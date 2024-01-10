@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import AttractionDetail from "./Components/AttractionDetail";
+import AttractionDetail from "./Components/AttractionDetail"; // Make sure to create this component
 
 function App() {
   const [attractionTypes, setAttractionTypes] = useState([]);
   const [selectedType, setSelectedType] = useState("");
   const [attractions, setAttractions] = useState([]);
-  const [savedAttractions, setSavedAttractions] = useState({});
 
   useEffect(() => {
     fetchAttractionTypes();
@@ -20,7 +19,7 @@ function App() {
         "https://api.stb.gov.sg/content/common/v2/types?category=attractions";
       const headers = {
         Accept: "application/json",
-        "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Your API key
+        "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Replace with your API key
       };
 
       const response = await axios.get(apiUrl, { headers });
@@ -35,7 +34,7 @@ function App() {
       const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=${type}`;
       const headers = {
         Accept: "application/json",
-        "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Your API key
+        "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Replace with your API key
       };
 
       const response = await axios.get(apiUrl, { headers });
@@ -48,17 +47,6 @@ function App() {
   const handleTypeClick = (type) => {
     setSelectedType(type);
     fetchAttractions(type);
-  };
-
-  const handleSaveAttraction = (id) => {
-    setSavedAttractions((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-  };
-
-  const isAttractionSaved = (id) => {
-    return savedAttractions[id];
   };
 
   return (
@@ -86,21 +74,9 @@ function App() {
                   <ul>
                     {attractions.map((attraction, index) => (
                       <li key={index}>
-                        <h3>
-                          <Link to={`/attraction/${attraction.uuid}`}>
-                            {attraction.name}
-                          </Link>
-                          <button
-                            onClick={() =>
-                              handleSaveAttraction(attraction.uuid)
-                            }
-                            className={`star-button ${
-                              isAttractionSaved(attraction.uuid) ? "saved" : ""
-                            }`}
-                          >
-                            ⭐
-                          </button>
-                        </h3>
+                        <Link to={`/attraction/${attraction.uuid}`}>
+                          <h3>{attraction.name}</h3>
+                        </Link>
                         <p>{attraction.description}</p>
                       </li>
                     ))}
