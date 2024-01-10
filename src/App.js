@@ -110,7 +110,15 @@ function App() {
             </div>
           }
         />
-        <Route path="/attraction/:id" element={<AttractionDetail />} />
+        <Route
+          path="/attraction/:id"
+          element={
+            <AttractionDetail
+              handleSaveAttraction={handleSaveAttraction}
+              isAttractionSaved={isAttractionSaved}
+            />
+          }
+        />
       </Routes>
     </Router>
   );
