@@ -36,3 +36,33 @@
     transform: rotate(360deg);
   }
 }
+
+.clickable {
+  cursor: pointer;
+}
+
+.clickable:hover {
+  text-decoration: underline; /* Optional: additional hover effect */
+}
+
+.star-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: transparent;
+}
+
+.star-button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: transparent; /* Keep the star transparent initially */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Simulate border */
+}
+
+.star-button.saved {
+  color: yellow; /* Change to yellow when saved */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000; /* Keep border effect */
+}
+
