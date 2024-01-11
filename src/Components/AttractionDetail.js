@@ -63,7 +63,7 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
   }
 
   return (
-    <div>
+    <div className="container">
       <h1>{attraction.name}</h1>
       <button onClick={() => handleSaveAttraction(id)}>
         {isAttractionSaved(id) ? "➖" : "➕"}
