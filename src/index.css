@@ -19,6 +19,14 @@ body {
   --black: #080808;
 }
 
+img {
+  width: 100%;
+}
+
+.relative {
+  position: relative;
+}
+
 .orange {
   color: var(--orange);
 }

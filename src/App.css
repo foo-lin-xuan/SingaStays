@@ -126,3 +126,11 @@ footer * {
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000; /* Keep border effect */
 }
+
+.details-hero {
+  background-color: #fafafa;
+  height: 570px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

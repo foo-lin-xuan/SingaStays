@@ -33,10 +33,12 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
         };
 
         const response = await axios.get(apiUrl, { headers });
+        // console.log(response.data.data[0].images[0]);
         setAttraction({
           uuid: id,
           name: response.data.data[0].name,
           imageUUID: response.data.data[0].images[0].uuid,
+          imageURL: response.data.data[0].images[0].url,
           description: response.data.data[0].description,
           tags: [...response.data.data[0].tags],
           body: response.data.data[0].body,
@@ -63,29 +65,41 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
   }
 
   return (
-    <div className="container">
-      <h1>{attraction.name}</h1>
-      <button onClick={() => handleSaveAttraction(id)}>
-        {isAttractionSaved(id) ? "➖" : "➕"}
-      </button>
-      <p>{attraction.description}</p>
-      <h2>tags: </h2>
-      <ul>
-        {attraction.tags.map((tag) => (
-          <li key={tag}>{tag}</li>
-        ))}
-      </ul>
-      {parse(attraction.body)}
-      <h2>Location</h2>
-      <b>{attraction.name}</b> <br />
-      {attraction.address.buildingName} <br />
-      {attraction.address.streetName} <br />#{attraction.address.floorNumber}-
-      {attraction.address.unitNumber} <br />
-      Singapore {attraction.address.postalCode} <br />
-      <h2>Contact Info</h2>
-      <div>{attraction.contact}</div>
-      <div>{attraction.officialWebsite}</div>
-      <div>{attraction.officialEmail}</div>
+    <div className="containers">
+      <div
+        className="details-hero relative"
+        style={{
+          backgroundImage: attraction.imageUUID
+            ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=/${attraction.imageUUID}&mediaType=image)`
+            : `url(${attraction.imageURL})`,
+        }}
+      >
+        <div className="overlay"></div>
+      </div>
+      <div className="container">
+        <h1>{attraction.name}</h1>
+        <button onClick={() => handleSaveAttraction(id)}>
+          {isAttractionSaved(id) ? "➖" : "➕"}
+        </button>
+        <p>{attraction.description}</p>
+        <h2>tags: </h2>
+        <ul>
+          {attraction.tags.map((tag) => (
+            <li key={tag}>{tag}</li>
+          ))}
+        </ul>
+        {parse(attraction.body)}
+        <h2>Location</h2>
+        <b>{attraction.name}</b> <br />
+        {attraction.address.buildingName} <br />
+        {attraction.address.streetName} <br />#{attraction.address.floorNumber}-
+        {attraction.address.unitNumber} <br />
+        Singapore {attraction.address.postalCode} <br />
+        <h2>Contact Info</h2>
+        <div>{attraction.contact}</div>
+        <div>{attraction.officialWebsite}</div>
+        <div>{attraction.officialEmail}</div>
+      </div>
     </div>
   );
 }
