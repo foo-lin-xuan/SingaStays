@@ -8,6 +8,7 @@ import { ReactComponent as Arrow } from "../assets/arrow.svg";
 const initialAttractionState = {
   uuid: "",
   name: "",
+  rating: "",
   imageUUID: "",
   description: "",
   tags: [],
@@ -37,6 +38,7 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
         setAttraction({
           uuid: id,
           name: response.data.data[0].name,
+          rating: (response.data.data[0].rating / 5) * 100,
           imageUUID: response.data.data[0].images[0].uuid,
           imageURL: response.data.data[0].images[0].url,
           description: response.data.data[0].description,
@@ -114,6 +116,14 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
           >
             ⭐
           </button>
+        </div>
+        <div className="rating">
+          <div className={styles.starOuter}>
+            <div
+              className={styles.starInner}
+              style={{ width: `${attraction.rating}%` }}
+            ></div>
+          </div>
         </div>
         <p>{attraction.description}</p>
         <ul className={styles.tags}>

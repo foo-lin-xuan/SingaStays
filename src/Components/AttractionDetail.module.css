@@ -11,7 +11,7 @@
 }
 
 .name {
-  color: #e34b36;
+  color: var(--orange);
   margin: 0;
 }
 
@@ -24,19 +24,19 @@
   display: inline-block;
   border-radius: 50px;
   border: 1px;
-  background: #244d3b;
+  background: var(--green);
   font-size: 14px;
   font-weight: 500;
   line-height: 17px;
   letter-spacing: 0em;
   text-align: left;
-  color: #ffffff;
+  color: var(--white);
   padding: 7px 15px;
   margin: 4px;
 }
 
 .infoEmphasis {
-  color: #e34b36;
+  color: var(--orange);
 }
 
 .infoTable {
@@ -54,7 +54,7 @@
 }
 
 .infoTable tr {
-  border-bottom: 0.5px solid #244d3b;
+  border-bottom: 0.5px solid var(--green);
 }
 
 .infoTable td {
@@ -63,4 +63,28 @@
   line-height: 25px;
   letter-spacing: 0em;
   text-align: left;
+}
+
+.starOuter {
+  position: relative;
+  font-size: 18px;
+  display: inline-block;
+}
+
+.starOuter::before {
+  content: "\2605 \2605 \2605 \2605 \2605";
+  color: #c4cdd5;
+}
+
+.starInner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  overflow: hidden;
+}
+
+.starInner::before {
+  content: "\2605 \2605 \2605 \2605 \2605";
+  color: var(--orange);
 }
