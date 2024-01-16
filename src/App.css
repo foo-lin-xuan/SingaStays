@@ -51,15 +51,6 @@ nav {
   left: 80px;
 }
 
-.overlay {
-  background: linear-gradient(180deg, rgba(224, 223, 231, 0.15) 48%, #fff 100%);
-  width: 100%;
-  position: absolute;
-  height: 100%;
-  top: 0;
-  left: 0;
-}
-
 /* Footer */
 footer {
   background-color: var(--green);
@@ -94,43 +85,4 @@ footer * {
 .socials {
   display: flex;
   gap: 15px;
-}
-/* Stars */
-.clickable {
-  cursor: pointer;
-}
-
-.clickable:hover {
-  text-decoration: underline; /* Optional: additional hover effect */
-}
-
-.star-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: transparent;
-}
-
-.star-button {
-  background: none;
-  border: none;
-  font-size: 20px;
-  cursor: pointer;
-  color: transparent; /* Keep the star transparent initially */
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000; /* Simulate border */
-}
-
-.star-button.saved {
-  color: yellow; /* Change to yellow when saved */
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000; /* Keep border effect */
-}
-
-.details-hero {
-  background-color: #fafafa;
-  height: 570px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 }

@@ -3,6 +3,8 @@ import axios from "axios";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import AttractionDetail from "./Components/AttractionDetail";
+import AttractionListing from "./Components/AttractionListing";
+import HomePage from "./Components/HomePage";
 import { ReactComponent as HeaderLogo } from "./assets/header-logo.svg";
 import { ReactComponent as FooterLogo } from "./assets/footer-logo.svg";
 import { ReactComponent as Arrow } from "./assets/arrow.svg";
@@ -50,7 +52,16 @@ function App() {
       };
 
       const response = await axios.get(apiUrl, { headers });
-      setAttractions(response.data.data);
+
+      const formattedAttractions = response.data.data.map((attraction) => ({
+        uuid: attraction.uuid,
+        name: attraction.name,
+        description: attraction.description,
+        imageUuid: attraction.images[0]?.uuid,
+        imageURL: response.data.data[0].images[0].url,
+      }));
+
+      setAttractions(formattedAttractions);
     } catch (error) {
       console.error(`Error fetching attractions for ${type}:`, error);
     }
@@ -78,16 +89,16 @@ function App() {
         <nav>
           <div className="nav-left">
             <div className="logo">
-              <a href="#">
+              <a href="/">
                 <HeaderLogo />
               </a>
             </div>
             <ul className="nav-links">
               <li>
-                <a href="#">Home</a>
+                <a href="/">Home</a>
               </li>
               <li>
-                <a href="#">Accomodations</a>
+                <a href="/attractions">Attractions</a>
               </li>
               {isLoggedIn && (
                 <li>
@@ -133,54 +144,8 @@ function App() {
       </section>
       <Router>
         <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="container">
-                <h1>Attraction Types</h1>
-                <ul>
-                  {attractionTypes.map((type, index) => (
-                    <li
-                      key={index}
-                      onClick={() => handleTypeClick(type)}
-                      className="clickable"
-                    >
-                      {type}
-                    </li>
-                  ))}
-                </ul>
-                {selectedType && (
-                  <div>
-                    <h2>Attractions for {selectedType}</h2>
-                    <ul>
-                      {attractions.map((attraction, index) => (
-                        <li key={index}>
-                          <h3>
-                            <Link to={`/attraction/${attraction.uuid}`}>
-                              {attraction.name}
-                            </Link>
-                            <button
-                              onClick={() =>
-                                handleSaveAttraction(attraction.uuid)
-                              }
-                              className={`star-button ${
-                                isAttractionSaved(attraction.uuid)
-                                  ? "saved"
-                                  : ""
-                              }`}
-                            >
-                              ⭐
-                            </button>
-                          </h3>
-                          <p>{attraction.description}</p>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            }
-          />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/attractions" element={<AttractionListing />} />
           <Route
             path="/attraction/:id"
             element={
@@ -206,10 +171,10 @@ function App() {
           <div>
             <ul className="nav-links">
               <li>
-                <a href="#">Home</a>
+                <a href="/">Home</a>
               </li>
               <li>
-                <a href="#">Accomodations</a>
+                <a href="/attractions">Attractions</a>
               </li>
               <li>
                 <button onClick={handlerLogIn} className="link">
