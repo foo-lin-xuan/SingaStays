@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import parse from "html-react-parser";
+import styles from "./AttractionDetail.module.css";
+import { ReactComponent as Arrow } from "../assets/arrow.svg";
 
 const initialAttractionState = {
   uuid: "",
@@ -23,7 +25,6 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
 
   useEffect(() => {
     const fetchAttraction = async () => {
-      console.log(id);
       setLoading(true);
       try {
         const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=uuids&searchValues=${id}`;
@@ -33,7 +34,6 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
         };
 
         const response = await axios.get(apiUrl, { headers });
-        // console.log(response.data.data[0].images[0]);
         setAttraction({
           uuid: id,
           name: response.data.data[0].name,
@@ -64,8 +64,37 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
     return <div>No attraction found</div>;
   }
 
+  const parseAddress = () => {
+    let address = {
+      buildingName: "",
+      streetName: "",
+      floorNumber: "",
+      unitNumber: "",
+      unit: "",
+      postalCode: "",
+    };
+
+    for (let part in address)
+      if (attraction.address[part]) address[part] = attraction.address[part];
+
+    if (address.floorNumber)
+      address.unit = `#${address.floorNumber}-${address.unitNumber}`;
+
+    if (address.postalCode)
+      address.postalCode = `Singapore ${address.postalCode}`;
+
+    for (let part in address) if (!address[part]) delete address[part];
+
+    delete address.floorNumber;
+    delete address.unitNumber;
+
+    return Object.values(address);
+  };
+
+  const addressArray = parseAddress();
+
   return (
-    <div className="containers">
+    <div className="container">
       <div
         className="details-hero relative"
         style={{
@@ -76,29 +105,54 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
       >
         <div className="overlay"></div>
       </div>
-      <div className="container">
-        <h1>{attraction.name}</h1>
-        <button onClick={() => handleSaveAttraction(id)}>
-          {isAttractionSaved(id) ? "➖" : "➕"}
-        </button>
+      <div className={styles.container}>
+        <div className={styles.titleRow}>
+          <h1 className={styles.name}>{attraction.name}</h1>
+          <button
+            onClick={() => handleSaveAttraction(id)}
+            className={`star-button ${isAttractionSaved(id) ? "saved" : ""}`}
+          >
+            ⭐
+          </button>
+        </div>
         <p>{attraction.description}</p>
-        <h2>tags: </h2>
-        <ul>
+        <ul className={styles.tags}>
           {attraction.tags.map((tag) => (
             <li key={tag}>{tag}</li>
           ))}
         </ul>
         {parse(attraction.body)}
-        <h2>Location</h2>
-        <b>{attraction.name}</b> <br />
-        {attraction.address.buildingName} <br />
-        {attraction.address.streetName} <br />#{attraction.address.floorNumber}-
-        {attraction.address.unitNumber} <br />
-        Singapore {attraction.address.postalCode} <br />
-        <h2>Contact Info</h2>
-        <div>{attraction.contact}</div>
-        <div>{attraction.officialWebsite}</div>
-        <div>{attraction.officialEmail}</div>
+        <h2 style={{ marginTop: "30px" }}>
+          More <span className={styles.infoEmphasis}>Information</span>
+        </h2>
+        <table className={styles.infoTable}>
+          <tr>
+            <th>Location</th>
+            <td>
+              {addressArray.map((line) => (
+                <div>{line}</div>
+              ))}
+            </td>
+          </tr>
+          <tr>
+            <th>Contact</th>
+            <td>{attraction.contact}</td>
+          </tr>
+          <tr>
+            <th>Email</th>
+            <td>{attraction.officialEmail}</td>
+          </tr>
+        </table>
+        <a
+          href={`https://${attraction.officialWebsite}`}
+          className="button-primary"
+          style={{ width: "fit-content", margin: "35px 0px" }}
+        >
+          Visit Website{" "}
+          <span>
+            <Arrow />
+          </span>
+        </a>
       </div>
     </div>
   );
