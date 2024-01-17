@@ -20,8 +20,8 @@ const initialAttractionState = {
   officialWebsite: "",
 };
 
-function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
-  //const { savedAttractions, setSavedAttractions, setNameHandler } = useContext(UserContext);
+function AttractionDetail() {
+  const { savedAttractions, setSavedAttractions, setNameHandler } = useContext(UserContext);
   const [attraction, setAttraction] = useState(initialAttractionState);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
@@ -97,17 +97,17 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
 
   const addressArray = parseAddress();
 
-  // const handleSaveAttraction = (id , name) => {
-  //   setSavedAttractions((prev) => ({
-  //     ...prev,
-  //     [id]: !prev[id],
-  //   }));
-  //   setNameHandler(name);
-  // };
+  const handleSaveAttraction = (id , name) => {
+    setSavedAttractions((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+    setNameHandler(name);
+  };
 
-  // const isAttractionSaved = (id) => {
-  //   return savedAttractions[id];
-  // };
+  const isAttractionSaved = (id) => {
+    return savedAttractions[id];
+  };
 
   return (
     <div className="">
@@ -171,6 +171,7 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
           href={`https://${attraction.officialWebsite}`}
           className="button-primary"
           style={{ width: "fit-content", margin: "35px 0px" }}
+          target="_blank" rel="noopener noreferrer"
         >
           Visit Website{" "}
           <span>
