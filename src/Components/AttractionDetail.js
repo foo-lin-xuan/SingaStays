@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import parse from "html-react-parser";
 import styles from "./AttractionDetail.module.css";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
+import { UserContext } from "./UserContextProvider";
 
 const initialAttractionState = {
   uuid: "",
@@ -20,6 +21,7 @@ const initialAttractionState = {
 };
 
 function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
+  //const { savedAttractions, setSavedAttractions, setNameHandler } = useContext(UserContext);
   const [attraction, setAttraction] = useState(initialAttractionState);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
@@ -95,6 +97,18 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
 
   const addressArray = parseAddress();
 
+  // const handleSaveAttraction = (id , name) => {
+  //   setSavedAttractions((prev) => ({
+  //     ...prev,
+  //     [id]: !prev[id],
+  //   }));
+  //   setNameHandler(name);
+  // };
+
+  // const isAttractionSaved = (id) => {
+  //   return savedAttractions[id];
+  // };
+
   return (
     <div className="">
       <div
@@ -111,7 +125,7 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
         <div className={styles.titleRow}>
           <h1 className={styles.name}>{attraction.name}</h1>
           <button
-            onClick={() => handleSaveAttraction(id)}
+            onClick={() => handleSaveAttraction(id,attraction.name)}
             className={`star-button ${isAttractionSaved(id) ? "saved" : ""}`}
           >
             ⭐

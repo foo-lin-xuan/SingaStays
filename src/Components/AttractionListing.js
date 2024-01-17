@@ -8,11 +8,13 @@ function AttractionListing() {
   const [attractionTypes, setAttractionTypes] = useState([]);
   const [selectedType, setSelectedType] = useState("");
   const [attractions, setAttractions] = useState([]);
-  const [savedAttractions, setSavedAttractions] = useState({});
+  //const [savedAttractions, setSavedAttractions] = useState({});
   const [allttractions, setAllAttractions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const { setNameHandler } = useContext(UserContext);
+  //const { savedAttractions, setSavedAttractions, setNameHandler } = useContext(UserContext);
+
+  const { savedAttractions, setSavedAttractions, setNameHandler } = useContext(UserContext);
 
   const handlerLogIn = () => {
     setIsLoggedIn(() => !isLoggedIn);
@@ -95,7 +97,11 @@ function AttractionListing() {
     fetchAttractions(type);
   };
 
-  const handleSaveAttraction = (name) => {
+  const handleSaveAttraction = (id , name) => {
+    setSavedAttractions((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
     setNameHandler(name);
   };
 
@@ -137,7 +143,7 @@ function AttractionListing() {
                     {attraction.name}
                   </Link>
                   <button
-                    onClick={() => handleSaveAttraction(attraction.name)}
+                    onClick={() => handleSaveAttraction(attraction.uuid, attraction.name)}
                     className={`star-button ${
                       isAttractionSaved(attraction.uuid) ? "saved" : ""
                     }`}

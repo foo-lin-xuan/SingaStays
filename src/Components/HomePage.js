@@ -6,7 +6,6 @@ import "../App.css";
 import { ReactComponent as Star } from "../assets/star.svg";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
 import { UserContext } from "../Components/UserContextProvider";
-import Display from "../Components/Display";
 
 function AttractionListing() {
   const [attractionTypes, setAttractionTypes] = useState([]);
@@ -14,11 +13,11 @@ function AttractionListing() {
   const [attractions, setAttractions] = useState([]);
   const [fourAttractions, setFourAttractions] = useState([]);
   const [allttractions, setAllAttractions] = useState([]);
-  const [savedAttractions, setSavedAttractions] = useState([]);
+  //const [savedAttractions, setSavedAttractions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeType, setActiveType] = useState(attractionTypes[0] || "");
 
-  const { setNameHandler } = useContext(UserContext);
+  const { savedAttractions, setSavedAttractions, setNameHandler } = useContext(UserContext);
   const handlerLogIn = () => {
     setIsLoggedIn(() => !isLoggedIn);
   };
@@ -129,22 +128,34 @@ function AttractionListing() {
     setActiveType(type);
   };
 
-  const handleSaveAttraction = (e, name) => {
+  // const handleSaveAttraction = (e, name) => {
+  //   setNameHandler(name);
+  //   let newAttraction = [...savedAttractions];
+  //   if (newAttraction.includes(name)) {
+  //     newAttraction = savedAttractions.filter((at) => at !== name);
+  //   } else {
+  //     newAttraction.push(name);
+  //   }
+  //   setSavedAttractions(newAttraction);
+  // };
+
+  // const isAttractionSaved = (name) => {
+  //   return savedAttractions && savedAttractions.indexOf(name) > -1
+  //     ? true
+  //     : false;
+  // };
+  const handleSaveAttraction = (id , name) => {
+    setSavedAttractions((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
     setNameHandler(name);
-    let newAttraction = [...savedAttractions];
-    if (newAttraction.includes(name)) {
-      newAttraction = savedAttractions.filter((at) => at !== name);
-    } else {
-      newAttraction.push(name);
-    }
-    setSavedAttractions(newAttraction);
   };
 
-  const isAttractionSaved = (name) => {
-    return savedAttractions && savedAttractions.indexOf(name) > -1
-      ? true
-      : false;
+  const isAttractionSaved = (id) => {
+    return savedAttractions[id];
   };
+
 
   function truncateWords(text, maxWords) {
     const words = text.split(" ");
@@ -232,13 +243,13 @@ function AttractionListing() {
                   <Star />
                 </button> */}
                 <button
-                  onClick={(e) => handleSaveAttraction(e, attraction.name)}
-                  className={`star-button ${
-                    isAttractionSaved(attraction.name) ? "saved" : ""
-                  }`}
-                >
+                    onClick={() => handleSaveAttraction(attraction.uuid, attraction.name)}
+                    className={`star-button ${
+                      isAttractionSaved(attraction.uuid) ? "saved" : ""
+                    }`}
+                  >
                   <Star />
-                </button>
+                  </button>
 
                 <p className="big">
                   {truncateWords(attraction.description, 10)}
@@ -293,14 +304,14 @@ function AttractionListing() {
                       }}
                     ></Link>
 
-                    <button
-                      onClick={(e) => handleSaveAttraction(e, attraction.name)}
-                      className={`star-button ${
-                        isAttractionSaved(attraction.name) ? "saved" : ""
-                      }`}
-                    >
-                      <Star />
-                    </button>
+                  <button
+                    onClick={() => handleSaveAttraction(attraction.uuid, attraction.name)}
+                    className={`star-button ${
+                      isAttractionSaved(attraction.uuid) ? "saved" : ""
+                    }`}
+                  >
+                   <Star />
+                  </button>
                   </div>
                   <div className={`${styles.exploreContent} text-left`}>
                     <h4>
@@ -341,14 +352,14 @@ function AttractionListing() {
                       }}
                     ></Link>
 
-                    <button
-                      onClick={(e) => handleSaveAttraction(e, attraction.name)}
-                      className={`star-button ${
-                        isAttractionSaved(attraction.name) ? "saved" : ""
-                      }`}
-                    >
-                      <Star />
-                    </button>
+                  <button
+                    onClick={() => handleSaveAttraction(attraction.uuid, attraction.name)}
+                    className={`star-button ${
+                      isAttractionSaved(attraction.uuid) ? "saved" : ""
+                    }`}
+                  >
+                  <Star />
+                  </button>
                   </div>
                   <div className={`${styles.exploreContent} text-left`}>
                     <h4>

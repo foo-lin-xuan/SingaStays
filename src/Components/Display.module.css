@@ -1,0 +1,57 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 50px;
+    font-size: 20px;
+  }
+  
+  .profile {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .profile img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .profile strong {
+    color: orange;
+  }
+  
+  .profile p {
+    margin: 5px 0;
+  }
+
+  .profileDetails p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .separator {
+    width: 100%;
+    height: 1px;
+    background-color: #ccc;
+    margin: 10px 0;
+  }
+  
+  .favorites {
+    margin-top: 20px;
+  }
+  
+  .favorites p {
+    margin: 5px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  /* Add new rule for smaller headings */
+.smallHeading {
+    font-size: 40px; /* Adjust the value as needed */
+  }
