@@ -21,7 +21,7 @@ function App() {
   const [savedAttractions, setSavedAttractions] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const {setNameHandler}  = useContext(UserContext);
+  const { setNameHandler } = useContext(UserContext);
 
   const handlerLogIn = () => {
     setIsLoggedIn(() => !isLoggedIn);
@@ -85,67 +85,46 @@ function App() {
   };
 
   return (
-    <><Router>
-      <header>
-        <nav>
-          <div className="nav-left">
-            <div className="logo">
-              <a href="/">
-                <HeaderLogo />
-              </a>
-            </div>
-            <ul className="nav-links">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/attractions">Attractions</a>
-              </li>
-              <li>
-                <Link to="/display">Display</Link>
-              </li>
-              {isLoggedIn && (
+    <>
+      <Router>
+        <header>
+          <nav>
+            <div className="nav-left">
+              <div className="logo">
+                <Link to="/">
+                  <HeaderLogo />
+                </Link>
+              </div>
+              <ul className="nav-links">
                 <li>
-                  <a href="#">Profile</a>
+                  <Link to="/">Home</Link>
                 </li>
-              )}
-            </ul>
-          </div>
-          <div className="nav-right">
-            <div>
-              <button onClick={handlerLogIn} className="button-secondary">
-                {isLoggedIn ? "Log Out" : "Log In"}
-                <span>
-                  <Arrow />
-                </span>
-              </button>
+                <li>
+                  <Link to="/attractions">Attractions</Link>
+                </li>
+                <li>
+                  <Link to="/display">Display</Link>
+                </li>
+                {isLoggedIn && (
+                  <li>
+                    <a href="#">Profile</a>
+                  </li>
+                )}
+              </ul>
             </div>
-          </div>
-        </nav>
-      </header>
-      <section className="hero-section">
-        <div className="overlay"></div>
-        <div className="content">
-          <hr />
-          <h1>
-            Discover Comfort, Embrace Adventure with
-            <span className="highlighted-orange"> SingaStays</span>.
-          </h1>
-          <p className="big">
-            Embark on a joyful stay in Singapore with SingaStays! Explore
-            tailored accommodations for a perfect blend of comfort and
-            adventure. Your unforgettable experience begins here.
-          </p>
-          <div>
-            <a className="button-primary" href="#">
-              Explore Singapore
-              <span>
-                <Arrow />
-              </span>
-            </a>
-          </div>
-        </div>
-      </section>
+            <div className="nav-right">
+              <div>
+                <button onClick={handlerLogIn} className="button-secondary">
+                  {isLoggedIn ? "Log Out" : "Log In"}
+                  <span>
+                    <Arrow />
+                  </span>
+                </button>
+              </div>
+            </div>
+          </nav>
+        </header>
+
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/attractions" element={<AttractionListing />} />
@@ -158,10 +137,7 @@ function App() {
               />
             }
           />
-           <Route
-            path="display"
-            element={<Display />}
-          />
+          <Route path="display" element={<Display />} />
         </Routes>
       </Router>
       <footer>

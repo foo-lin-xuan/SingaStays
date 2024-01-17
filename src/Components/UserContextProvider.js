@@ -3,30 +3,30 @@
 import React, { createContext, useState } from "react";
 
 export const UserContext = createContext({
-    names: [],
-    setNameHandler: () => {},
+  names: [],
+  setNameHandler: () => {},
 });
 
 export function UserContextProvider({ children }) {
   //const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [names, setName] = useState([]);
+  // const [savedAttractions, setSavedAttractions] = useState([]);
 
   //const toggleLogin = () => {
- //   setIsLoggedIn((prev) => !prev);
- // };
+  //   setIsLoggedIn((prev) => !prev);
+  // };
 
   const setNameHandler = (name) => {
     console.log("Saving attraction:", name);
     setName((prev) => {
-        return [...prev, name];
+      return [...prev, name];
     });
   };
 
   const context = {
     names: names,
-    setNameHandler: setNameHandler
-
-  }
+    setNameHandler: setNameHandler,
+  };
 
   return (
     <UserContext.Provider value={context}>{children}</UserContext.Provider>

@@ -24,6 +24,10 @@ ul {
   list-style: none;
 }
 
+li {
+  position: relative;
+}
+
 img {
   width: 100%;
 }

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./HomePage.module.css";
 import "../App.css";
 import { ReactComponent as Star } from "../assets/star.svg";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
+import { UserContext } from "../Components/UserContextProvider";
+import Display from "../Components/Display";
 
 function AttractionListing() {
   const [attractionTypes, setAttractionTypes] = useState([]);
@@ -12,10 +14,11 @@ function AttractionListing() {
   const [attractions, setAttractions] = useState([]);
   const [fourAttractions, setFourAttractions] = useState([]);
   const [allttractions, setAllAttractions] = useState([]);
-  const [savedAttractions, setSavedAttractions] = useState({});
+  const [savedAttractions, setSavedAttractions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeType, setActiveType] = useState(attractionTypes[0] || "");
 
+  const { setNameHandler } = useContext(UserContext);
   const handlerLogIn = () => {
     setIsLoggedIn(() => !isLoggedIn);
   };
@@ -42,7 +45,7 @@ function AttractionListing() {
 
   const fetchAttractions = async (type) => {
     try {
-      const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=${type}&limit=4`;
+      const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=${type}&limit=8`;
       const headers = {
         Accept: "application/json",
         "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Your API key
@@ -98,7 +101,7 @@ function AttractionListing() {
 
   const fetchAllAttractions = async (type) => {
     try {
-      const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=adventure&limit=4`;
+      const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=adventure&limit=8`;
       const headers = {
         Accept: "application/json",
         "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Your API key
@@ -126,15 +129,21 @@ function AttractionListing() {
     setActiveType(type);
   };
 
-  const handleSaveAttraction = (id) => {
-    setSavedAttractions((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  const handleSaveAttraction = (e, name) => {
+    setNameHandler(name);
+    let newAttraction = [...savedAttractions];
+    if (newAttraction.includes(name)) {
+      newAttraction = savedAttractions.filter((at) => at !== name);
+    } else {
+      newAttraction.push(name);
+    }
+    setSavedAttractions(newAttraction);
   };
 
-  const isAttractionSaved = (id) => {
-    return savedAttractions[id];
+  const isAttractionSaved = (name) => {
+    return savedAttractions && savedAttractions.indexOf(name) > -1
+      ? true
+      : false;
   };
 
   function truncateWords(text, maxWords) {
@@ -148,6 +157,27 @@ function AttractionListing() {
 
   return (
     <div className="">
+      <section className="hero-section">
+        <div className="overlay"></div>
+        <div className="content">
+          <hr />
+          <h1>
+            Discover Comfort, Embrace Adventure with
+            <span className="highlighted-orange"> SingaStays</span>.
+          </h1>
+          <p className="big">
+            Embark on a joyful stay in Singapore with SingaStays! Explore
+            tailored accommodations for a perfect blend of comfort and
+            adventure. Your unforgettable experience begins here.
+          </p>
+          <Link to={`/attractions/`} className="button-primary">
+            Explore Singapore
+            <span>
+              <Arrow />
+            </span>
+          </Link>
+        </div>
+      </section>
       <section className={`${styles.section} container`}>
         <h2>
           <span className="highlighted-orange">Inspiration</span> for your
@@ -170,10 +200,10 @@ function AttractionListing() {
           </span>
         </Link>
         <ul className={styles.mainInspoCon}>
-          {console.log("4 attractions:" + fourAttractions)}
+          {/* {console.log("4 attractions:" + fourAttractions)} */}
           {fourAttractions.map((attraction, index) => (
             <li key={index} className="relative">
-              {console.log("attractions:" + attraction)}
+              {/* {console.log("attractions:" + attraction)} */}
               <div className={`${styles.inspo} relative`}>
                 <Link
                   to={`/attraction/${attraction.uuid}`}
@@ -193,10 +223,18 @@ function AttractionListing() {
                     {attraction.name}
                   </Link>
                 </h3>
+                {/* <button
+                  onClick={() => handleSaveAttraction(attraction.name)}
+                  className={`star-button qww ${
+                    isAttractionSaved(attraction.name) ? "saved" : ""
+                  }`}
+                >
+                  <Star />
+                </button> */}
                 <button
-                  onClick={() => handleSaveAttraction(attraction.uuid)}
+                  onClick={(e) => handleSaveAttraction(e, attraction.name)}
                   className={`star-button ${
-                    isAttractionSaved(attraction.uuid) ? "saved" : ""
+                    isAttractionSaved(attraction.name) ? "saved" : ""
                   }`}
                 >
                   <Star />
@@ -243,7 +281,7 @@ function AttractionListing() {
             <ul className={`${styles.lisContent} container`}>
               {attractions.map((attraction, index) => (
                 <li key={index}>
-                  {console.log("attractions:" + attraction)}
+                  {/* {console.log("attractions:" + attraction)} */}
                   <div className="relative">
                     <Link
                       to={`/attraction/${attraction.uuid}`}
@@ -256,9 +294,9 @@ function AttractionListing() {
                     ></Link>
 
                     <button
-                      onClick={() => handleSaveAttraction(attraction.uuid)}
+                      onClick={(e) => handleSaveAttraction(e, attraction.name)}
                       className={`star-button ${
-                        isAttractionSaved(attraction.uuid) ? "saved" : ""
+                        isAttractionSaved(attraction.name) ? "saved" : ""
                       }`}
                     >
                       <Star />
@@ -291,7 +329,7 @@ function AttractionListing() {
             <ul className={`${styles.lisContent} container`}>
               {allttractions.map((attraction, index) => (
                 <li key={index}>
-                  {console.log("attractions:" + attraction)}
+                  {/* {console.log("attractions:" + attraction)} */}
                   <div className="relative">
                     <Link
                       to={`/attraction/${attraction.uuid}`}
@@ -304,9 +342,9 @@ function AttractionListing() {
                     ></Link>
 
                     <button
-                      onClick={() => handleSaveAttraction(attraction.uuid)}
+                      onClick={(e) => handleSaveAttraction(e, attraction.name)}
                       className={`star-button ${
-                        isAttractionSaved(attraction.uuid) ? "saved" : ""
+                        isAttractionSaved(attraction.name) ? "saved" : ""
                       }`}
                     >
                       <Star />

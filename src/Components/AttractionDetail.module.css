@@ -1,4 +1,4 @@
-.container {
+.detailContainer {
   display: flex;
   flex-direction: column;
   margin: 0px 150px;
@@ -87,4 +87,12 @@
 .starInner::before {
   content: "\2605 \2605 \2605 \2605 \2605";
   color: var(--orange);
+}
+
+.detailsHero {
+  background-size: cover;
+  width: 100%;
+  height: 650px;
+  background-position: center;
+  background-repeat: no-repeat;
 }

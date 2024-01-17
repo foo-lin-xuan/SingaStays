@@ -96,9 +96,9 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
   const addressArray = parseAddress();
 
   return (
-    <div className="container">
+    <div className="">
       <div
-        className="details-hero relative"
+        className={`${styles.detailsHero} relative`}
         style={{
           backgroundImage: attraction.imageUUID
             ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=/${attraction.imageUUID}&mediaType=image)`
@@ -107,7 +107,7 @@ function AttractionDetail({ handleSaveAttraction, isAttractionSaved }) {
       >
         <div className="overlay"></div>
       </div>
-      <div className={styles.container}>
+      <div className={`${styles.detailContainer} container`}>
         <div className={styles.titleRow}>
           <h1 className={styles.name}>{attraction.name}</h1>
           <button

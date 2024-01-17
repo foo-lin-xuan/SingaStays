@@ -12,7 +12,7 @@ function AttractionListing() {
   const [allttractions, setAllAttractions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const {setNameHandler}  = useContext(UserContext);
+  const { setNameHandler } = useContext(UserContext);
 
   const handlerLogIn = () => {
     setIsLoggedIn(() => !isLoggedIn);
@@ -96,7 +96,7 @@ function AttractionListing() {
   };
 
   const handleSaveAttraction = (name) => {
-      setNameHandler(name);
+    setNameHandler(name);
   };
 
   const isAttractionSaved = (id) => {
