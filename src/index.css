@@ -32,8 +32,30 @@ img {
   width: 100%;
 }
 
+.show-mobile {
+  display: none;
+}
+
+.show-desktop {
+  display: block;
+}
+
 .relative {
   position: relative;
+}
+
+.hover-con {
+  border-radius: 10px;
+  overflow: hidden;
+}
+.hover a,
+.main-hover {
+  transition: all 0.3s linear;
+}
+
+.hover:hover a,
+.main-hover:hover {
+  transform: scale(1.1);
 }
 
 .orange {
@@ -62,10 +84,13 @@ h1,
 h2,
 h3,
 h4 {
-  font-size: 40px;
   font-weight: 700;
   line-height: 1.3;
   margin-top: 30px;
+}
+
+h1 {
+  font-size: 40px;
 }
 
 h2 {
@@ -116,11 +141,12 @@ button.button-primary {
   background-color: var(--green);
   color: var(--white);
   border-radius: 4px;
-  padding: 8px 20px 10px 20px;
+  padding: 11px 45px 11px 20px;
   line-height: 1;
   gap: 5px;
   font-size: 16px;
   cursor: pointer;
+  position: relative;
 }
 a.button-primary svg path,
 button.button-primary svg path {
@@ -134,12 +160,31 @@ button.button-secondary {
   border: 1px solid var(--green);
   color: var(--green);
   border-radius: 4px;
-  padding: 8px 20px 10px 20px;
+  padding: 11px 45px 11px 20px;
   line-height: 1;
   gap: 5px;
   background-color: var(--white);
   font-size: 16px;
   cursor: pointer;
+  position: relative;
+}
+
+a.button-primary span,
+button.button-primary span,
+a.button-secondary span,
+button.button-secondary span {
+  position: absolute;
+  right: 15px;
+  transition: transform 0.3s ease;
+  top: 50%;
+  transform: translateY(-53%);
+}
+
+a.button-primary:hover span,
+button.button-primary:hover span,
+a.button-secondary:hover span,
+button.button-secondary:hover span {
+  transform: translateY(-53%) translateX(-5px);
 }
 
 button.link {
@@ -166,7 +211,7 @@ button.link {
 .container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 40px 40px;
+  padding: 40px 80px;
 }
 
 .overlay {
@@ -203,6 +248,7 @@ button.link {
   margin-right: 10px;
   color: var(--green);
   transition: all 0.3s linear;
+  margin-bottom: 20px;
 }
 
 .clickable:hover {
@@ -210,13 +256,6 @@ button.link {
   background-color: var(--green);
   color: var(--white);
 }
-
-/* .star-button {
-  background: none;
-  border: none;
-  cursor: pointer;
-  color: transparent;
-} */
 
 .star-button {
   background: var(--orange);
@@ -235,14 +274,72 @@ button.link {
   border-top-left-radius: 10px;
 }
 
+.star-button:hover svg path {
+  fill: var(--white);
+}
+
 .star-button svg {
   width: 20px;
   margin-top: 5px;
+  height: auto;
+}
+
+.star-button svg path {
+  stroke: var(--white);
 }
 
 .star-button.saved {
   color: yellow; /* Change to yellow when saved */
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000; /* Keep border effect */
-  background: var(--green);
+}
+
+.star-button.saved svg path {
+  fill: var(--white);
+}
+
+@media only screen and (max-width: 1024px) {
+  .star-button {
+    width: 55px;
+    height: 55px;
+  }
+  .star-button svg {
+    width: 27px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  h2 {
+    font-size: 27px;
+  }
+
+  h3 {
+    font-size: 22px;
+  }
+
+  h4 {
+    font-size: 18px;
+  }
+
+  .container {
+    padding: 80px 40px 40px;
+  }
+  .clickable {
+    margin-bottom: 15px;
+  }
+  .hide-desktop {
+    display: none;
+  }
+
+  .show-mobile {
+    display: block;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
 }

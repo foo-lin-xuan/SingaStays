@@ -6,6 +6,7 @@ import "../App.css";
 import { ReactComponent as Star } from "../assets/star.svg";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
 import { UserContext } from "../Components/UserContextProvider";
+import hero from "../assets/hero.jpg";
 
 function AttractionListing() {
   const [attractionTypes, setAttractionTypes] = useState([]);
@@ -17,7 +18,8 @@ function AttractionListing() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeType, setActiveType] = useState(attractionTypes[0] || "");
 
-  const { savedAttractions, setSavedAttractions, setNameHandler } = useContext(UserContext);
+  const { savedAttractions, setSavedAttractions, setNameHandler } =
+    useContext(UserContext);
   const handlerLogIn = () => {
     setIsLoggedIn(() => !isLoggedIn);
   };
@@ -44,7 +46,7 @@ function AttractionListing() {
 
   const fetchAttractions = async (type) => {
     try {
-      const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=${type}&limit=8`;
+      const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=${type}&limit=4`;
       const headers = {
         Accept: "application/json",
         "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Your API key
@@ -100,7 +102,7 @@ function AttractionListing() {
 
   const fetchAllAttractions = async (type) => {
     try {
-      const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=adventure&limit=8`;
+      const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=adventure&limit=4`;
       const headers = {
         Accept: "application/json",
         "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Your API key
@@ -144,7 +146,7 @@ function AttractionListing() {
   //     ? true
   //     : false;
   // };
-  const handleSaveAttraction = (id , name) => {
+  const handleSaveAttraction = (id, name) => {
     setSavedAttractions((prev) => ({
       ...prev,
       [id]: !prev[id],
@@ -155,7 +157,6 @@ function AttractionListing() {
   const isAttractionSaved = (id) => {
     return savedAttractions[id];
   };
-
 
   function truncateWords(text, maxWords) {
     const words = text.split(" ");
@@ -168,9 +169,12 @@ function AttractionListing() {
 
   return (
     <div className="">
-      <section className="hero-section">
-        <div className="overlay"></div>
-        <div className="content">
+      <section className={styles.heroSection}>
+        <div className="hide-desktop show-mobile">
+          <img src={hero} alt="picture of myself" />
+        </div>
+        <div className="overlay hide-mobile show-desktop"></div>
+        <div className={styles.content}>
           <hr />
           <h1>
             Discover Comfort, Embrace Adventure with
@@ -195,13 +199,11 @@ function AttractionListing() {
           <br />
           stay in SG
         </h2>
-        <p className="big">
+        <p className={`${styles.inspoIntro} big`}>
           Not sure what to do on your next trip to Singapore? No worries. We
-          have gathered a<br />
-          selection of curated journeys from different parts of the country.
-          Find interesting
-          <br />
-          sights to see, places to visit, and restaurants to dine in.
+          have gathered a selection of curated journeys from different parts of
+          the country. Find interesting sights to see, places to visit, and
+          restaurants to dine in.
         </p>
 
         <Link to={`/attractions/`} className="button-primary">
@@ -213,28 +215,29 @@ function AttractionListing() {
         <ul className={styles.mainInspoCon}>
           {/* {console.log("4 attractions:" + fourAttractions)} */}
           {fourAttractions.map((attraction, index) => (
-            <li key={index} className="relative">
-              {/* {console.log("attractions:" + attraction)} */}
-              <div className={`${styles.inspo} relative`}>
-                <Link
-                  to={`/attraction/${attraction.uuid}`}
-                  className={styles.inspo}
-                  style={{
-                    backgroundImage: attraction.imageUuid
-                      ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image`
-                      : `url(${attraction.imageURL})`,
-                  }}
-                >
-                  <div className="black-overlay"></div>
-                </Link>
-              </div>
-              <div className={styles.textContent}>
-                <h3>
-                  <Link to={`/attraction/${attraction.uuid}`}>
-                    {attraction.name}
+            <li key={index} className="relative hover-con">
+              <div className="hover">
+                {/* {console.log("attractions:" + attraction)} */}
+                <div className={`${styles.inspo} relative`}>
+                  <Link
+                    to={`/attraction/${attraction.uuid}`}
+                    className={`${styles.inspo}`}
+                    style={{
+                      backgroundImage: attraction.imageUuid
+                        ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image`
+                        : `url(${attraction.imageURL})`,
+                    }}
+                  >
+                    <div className="black-overlay"></div>
                   </Link>
-                </h3>
-                {/* <button
+                </div>
+                <div className={styles.textContent}>
+                  <h3>
+                    <Link to={`/attraction/${attraction.uuid}`}>
+                      {attraction.name}
+                    </Link>
+                  </h3>
+                  {/* <button
                   onClick={() => handleSaveAttraction(attraction.name)}
                   className={`star-button qww ${
                     isAttractionSaved(attraction.name) ? "saved" : ""
@@ -242,18 +245,21 @@ function AttractionListing() {
                 >
                   <Star />
                 </button> */}
-                <button
-                    onClick={() => handleSaveAttraction(attraction.uuid, attraction.name)}
+                  <button
+                    onClick={() =>
+                      handleSaveAttraction(attraction.uuid, attraction.name)
+                    }
                     className={`star-button ${
                       isAttractionSaved(attraction.uuid) ? "saved" : ""
                     }`}
                   >
-                  <Star />
+                    <Star />
                   </button>
 
-                <p className="big">
-                  {truncateWords(attraction.description, 10)}
-                </p>
+                  <p className="big">
+                    {truncateWords(attraction.description, 10)}
+                  </p>
+                </div>
               </div>
             </li>
           ))}
@@ -293,10 +299,10 @@ function AttractionListing() {
               {attractions.map((attraction, index) => (
                 <li key={index}>
                   {/* {console.log("attractions:" + attraction)} */}
-                  <div className="relative">
+                  <div className="relative hover-con">
                     <Link
                       to={`/attraction/${attraction.uuid}`}
-                      className={`${styles.detailsHero} relative`}
+                      className={`${styles.detailsHero} relative main-hover `}
                       style={{
                         backgroundImage: attraction.imageUuid
                           ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image`
@@ -304,14 +310,16 @@ function AttractionListing() {
                       }}
                     ></Link>
 
-                  <button
-                    onClick={() => handleSaveAttraction(attraction.uuid, attraction.name)}
-                    className={`star-button ${
-                      isAttractionSaved(attraction.uuid) ? "saved" : ""
-                    }`}
-                  >
-                   <Star />
-                  </button>
+                    <button
+                      onClick={() =>
+                        handleSaveAttraction(attraction.uuid, attraction.name)
+                      }
+                      className={`star-button ${
+                        isAttractionSaved(attraction.uuid) ? "saved" : ""
+                      }`}
+                    >
+                      <Star />
+                    </button>
                   </div>
                   <div className={`${styles.exploreContent} text-left`}>
                     <h4>
@@ -341,10 +349,10 @@ function AttractionListing() {
               {allttractions.map((attraction, index) => (
                 <li key={index}>
                   {/* {console.log("attractions:" + attraction)} */}
-                  <div className="relative">
+                  <div className="relative hover-con">
                     <Link
                       to={`/attraction/${attraction.uuid}`}
-                      className={`${styles.detailsHero} relative`}
+                      className={`${styles.detailsHero} relative main-hover `}
                       style={{
                         backgroundImage: attraction.imageUuid
                           ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image)`
@@ -352,14 +360,16 @@ function AttractionListing() {
                       }}
                     ></Link>
 
-                  <button
-                    onClick={() => handleSaveAttraction(attraction.uuid, attraction.name)}
-                    className={`star-button ${
-                      isAttractionSaved(attraction.uuid) ? "saved" : ""
-                    }`}
-                  >
-                  <Star />
-                  </button>
+                    <button
+                      onClick={() =>
+                        handleSaveAttraction(attraction.uuid, attraction.name)
+                      }
+                      className={`star-button ${
+                        isAttractionSaved(attraction.uuid) ? "saved" : ""
+                      }`}
+                    >
+                      <Star />
+                    </button>
                   </div>
                   <div className={`${styles.exploreContent} text-left`}>
                     <h4>

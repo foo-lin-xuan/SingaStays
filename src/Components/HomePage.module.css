@@ -7,27 +7,35 @@ section.section {
 .mainInspoCon * {
   color: var(--white);
 }
+.content {
+  position: absolute;
+  max-width: 450px;
+  top: 80px;
+  left: 80px;
+}
 
 .mainInspoCon {
   margin-top: 60px;
   display: flex;
-  gap: 20px;
+  gap: 25px;
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
+  justify-content: center;
 }
 
-section.exploreContainer {
+.heroSection {
+  margin-top: 80px;
+  background-image: url(../assets/hero.jpg);
+  height: 700px;
   background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
-  background-image: url(../assets/background.png);
-  padding: 50px 0 80px;
-  margin-bottom: 0;
+  background-position: center;
+  position: relative;
 }
 
 .mainInspoCon li {
-  flex: 1;
+  flex-basis: calc(25% - 20px);
 }
 
 .textContent p {
@@ -50,12 +58,16 @@ section.exploreContainer {
   background-size: cover;
 }
 
+.inspoIntro {
+  max-width: 720px;
+}
 .textContent {
   position: absolute;
   bottom: 0;
-  padding: 0 20px;
+  padding: 0 22px;
   /* min-height: 220px; */
   padding-bottom: 25px;
+  width: 100%;
 }
 
 .textContent h3 a {
@@ -64,7 +76,7 @@ section.exploreContainer {
 
 .exploreIntro {
   text-align: center;
-  margin-bottom: 60px;
+  margin-bottom: 40px;
 }
 .exploreText {
   max-width: 630px;
@@ -74,8 +86,9 @@ section.exploreContainer {
 .lisContent {
   display: inline-flex;
   flex-wrap: wrap;
-  padding: 0;
+  padding: 0 40px;
   gap: 20px;
+  justify-content: center;
 }
 
 .lisContent li {
@@ -88,13 +101,14 @@ section.exploreContainer {
 
 .lisContent::after {
   content: "";
+  content: none;
   flex: auto;
   margin-bottom: -30px; /* Negative margin to offset the margin-bottom on the last row */
 }
 
 .detailsHero {
   background-color: #fafafa;
-  width: 330px;
+  width: 100%;
   height: 330px;
   background-repeat: no-repeat;
   background-size: cover;
@@ -102,6 +116,16 @@ section.exploreContainer {
   border-radius: 10px;
   display: block;
 }
+
+section.exploreContainer {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-image: url(../assets/background.png);
+  padding: 50px 0 80px;
+  margin-bottom: 0;
+}
+
 .exploreContent {
   padding: 0 20px;
 }
@@ -116,4 +140,67 @@ section.exploreContainer {
 
 .exploreButton {
   margin-top: 40px;
+}
+
+@media only screen and (max-width: 1024px) {
+  section.section {
+    margin-bottom: 20px;
+  }
+  .mainInspoCon li {
+    flex-basis: calc(50% - 20px);
+  }
+  .lisContent {
+    padding: 0 80px;
+  }
+  .lisContent::after {
+    content: none;
+  }
+  .lisContent li {
+    flex: 0 0 calc(50% - 20px);
+    margin-bottom: 40px;
+  }
+  .inspo {
+    height: 400px;
+  }
+  .textContent {
+    padding: 0 40px;
+    padding-bottom: 30px;
+  }
+  .detailsHero {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .content {
+    position: static;
+    padding: 50px 40px 0;
+  }
+
+  .heroSection {
+    background-image: none;
+    height: auto;
+  }
+
+  .mainInspoCon li {
+    flex-basis: calc(100% - 20px);
+  }
+  .lisContent {
+    padding: 0 20px;
+  }
+  .lisContent li {
+    flex: 0 0 calc(100% - 20px);
+    margin-bottom: 30px;
+  }
+  .inspo {
+    height: 400px;
+  }
+  .exploreText,
+  .tagContainer {
+    padding: 0 20px;
+  }
+  .textContent {
+    padding: 0 50px;
+    padding-bottom: 20px;
+  }
 }
