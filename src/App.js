@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import "./App.css";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
@@ -11,6 +11,8 @@ import { ReactComponent as Arrow } from "./assets/arrow.svg";
 import { ReactComponent as Facebook } from "./assets/facebook-social.svg";
 import { ReactComponent as Twitter } from "./assets/twitter-social.svg";
 import { ReactComponent as Instagram } from "./assets/instagram-social.svg";
+import { UserContext } from "./Components/UserContextProvider";
+import Display from "./Components/Display";
 
 function App() {
   const [attractionTypes, setAttractionTypes] = useState([]);
@@ -18,6 +20,8 @@ function App() {
   const [attractions, setAttractions] = useState([]);
   const [savedAttractions, setSavedAttractions] = useState({});
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const {setNameHandler}  = useContext(UserContext);
 
   const handlerLogIn = () => {
     setIsLoggedIn(() => !isLoggedIn);
@@ -72,11 +76,8 @@ function App() {
     fetchAttractions(type);
   };
 
-  const handleSaveAttraction = (id) => {
-    setSavedAttractions((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  const handleSaveAttraction = (name) => {
+    setNameHandler(name);
   };
 
   const isAttractionSaved = (id) => {
@@ -84,7 +85,7 @@ function App() {
   };
 
   return (
-    <>
+    <><Router>
       <header>
         <nav>
           <div className="nav-left">
@@ -99,6 +100,9 @@ function App() {
               </li>
               <li>
                 <a href="/attractions">Attractions</a>
+              </li>
+              <li>
+                <Link to="/display">Display</Link>
               </li>
               {isLoggedIn && (
                 <li>
@@ -142,7 +146,6 @@ function App() {
           </div>
         </div>
       </section>
-      <Router>
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/attractions" element={<AttractionListing />} />
@@ -154,6 +157,10 @@ function App() {
                 isAttractionSaved={isAttractionSaved}
               />
             }
+          />
+           <Route
+            path="display"
+            element={<Display />}
           />
         </Routes>
       </Router>

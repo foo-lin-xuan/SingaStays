@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { UserContext } from "./UserContextProvider";
+import Display from "./Display";
 
 function AttractionListing() {
   const [attractionTypes, setAttractionTypes] = useState([]);
@@ -9,6 +11,8 @@ function AttractionListing() {
   const [savedAttractions, setSavedAttractions] = useState({});
   const [allttractions, setAllAttractions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const {setNameHandler}  = useContext(UserContext);
 
   const handlerLogIn = () => {
     setIsLoggedIn(() => !isLoggedIn);
@@ -91,11 +95,8 @@ function AttractionListing() {
     fetchAttractions(type);
   };
 
-  const handleSaveAttraction = (id) => {
-    setSavedAttractions((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
+  const handleSaveAttraction = (name) => {
+      setNameHandler(name);
   };
 
   const isAttractionSaved = (id) => {
@@ -136,7 +137,7 @@ function AttractionListing() {
                     {attraction.name}
                   </Link>
                   <button
-                    onClick={() => handleSaveAttraction(attraction.uuid)}
+                    onClick={() => handleSaveAttraction(attraction.name)}
                     className={`star-button ${
                       isAttractionSaved(attraction.uuid) ? "saved" : ""
                     }`}
@@ -170,7 +171,7 @@ function AttractionListing() {
                     {attraction.name}
                   </Link>
                   <button
-                    onClick={() => handleSaveAttraction(attraction.uuid)}
+                    onClick={() => handleSaveAttraction(attraction.name)}
                     className={`star-button ${
                       isAttractionSaved(attraction.uuid) ? "saved" : ""
                     }`}
