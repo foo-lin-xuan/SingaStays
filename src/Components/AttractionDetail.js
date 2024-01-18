@@ -21,7 +21,7 @@ const initialAttractionState = {
 };
 
 function AttractionDetail() {
-  const { savedAttractions, setSavedAttractions, setNameHandler } =
+  const { savedAttractions, setSavedAttractions, setFavHandler } =
     useContext(UserContext);
   const [attraction, setAttraction] = useState(initialAttractionState);
   const [loading, setLoading] = useState(true);
@@ -103,7 +103,7 @@ function AttractionDetail() {
       ...prev,
       [id]: !prev[id],
     }));
-    setNameHandler(name);
+    setFavHandler(id, name);
   };
 
   const isAttractionSaved = (id) => {

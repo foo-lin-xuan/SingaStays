@@ -3,15 +3,15 @@
 import React, { createContext, useState } from "react";
 
 export const UserContext = createContext({
-  names: [],
-  setNameHandler: () => {},
+  fav: [],
+  setFavHandler: () => {},
   savedAttractions: {},
   setSavedAttractions: () => {},
 });
 
 export function UserContextProvider({ children }) {
   //const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [names, setName] = useState([]);
+  const [fav, setFav] = useState([]);
   const [savedAttractions, setSavedAttractions] = useState({});
   // const [savedAttractions, setSavedAttractions] = useState([]);
 
@@ -19,36 +19,41 @@ export function UserContextProvider({ children }) {
   //   setIsLoggedIn((prev) => !prev);
   // };
 
-  // const setNameHandler = (name) => {
+  // const setFavHandler = (name) => {
   //   console.log("Saving attraction:", name);
-  //   setName((prev) => {
+  //   setFav((prev) => {
   //     return [...prev, name];
-  //   }); 
+  //   });
   // };
 
-  const setNameHandler = (name) => {
-    setName((prevNames) => {
+  const setFavHandler = (id, name) => {
+    setFav((prevNames) => {
       // Check if the name is already in the list
-      const nameIndex = prevNames.indexOf(name);
+      const attractionIndex = prevNames.findIndex(
+        (attraction) => attraction.id === id
+      );
 
-      if (nameIndex !== -1) {
+      if (attractionIndex !== -1) {
         // If the name is already in the list, remove it
         console.log("Removing " + name);
-        return [...prevNames.slice(0, nameIndex), ...prevNames.slice(nameIndex + 1)];
+        return [
+          ...prevNames.slice(0, attractionIndex),
+          ...prevNames.slice(attractionIndex + 1),
+        ];
       } else {
         // If the name is not in the list, add it
         console.log("Adding " + name);
         setSavedAttractions((prev) => {
           return { ...prev, [name]: !prev[name] };
         });
-        return [...prevNames, name];
+        return [...prevNames, { id, name }];
       }
     });
   };
 
   const context = {
-    names: names,
-    setNameHandler: setNameHandler,
+    fav: fav,
+    setFavHandler: setFavHandler,
     savedAttractions: savedAttractions,
     setSavedAttractions: setSavedAttractions,
   };

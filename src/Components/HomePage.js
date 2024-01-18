@@ -18,7 +18,7 @@ function AttractionListing() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeType, setActiveType] = useState(attractionTypes[0] || "");
 
-  const { savedAttractions, setSavedAttractions, setNameHandler } =
+  const { savedAttractions, setSavedAttractions, setFavHandler } =
     useContext(UserContext);
   const handlerLogIn = () => {
     setIsLoggedIn(() => !isLoggedIn);
@@ -131,7 +131,7 @@ function AttractionListing() {
   };
 
   // const handleSaveAttraction = (e, name) => {
-  //   setNameHandler(name);
+  //   setFavHandler(name);
   //   let newAttraction = [...savedAttractions];
   //   if (newAttraction.includes(name)) {
   //     newAttraction = savedAttractions.filter((at) => at !== name);
@@ -151,7 +151,7 @@ function AttractionListing() {
       ...prev,
       [id]: !prev[id],
     }));
-    setNameHandler(name);
+    setFavHandler(id, name);
   };
 
   const isAttractionSaved = (id) => {

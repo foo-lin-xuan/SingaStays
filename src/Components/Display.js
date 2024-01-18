@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContextProvider";
 import profileImage from "../assets/profilepic.png";
 import styles from "./Display.module.css";
+import { Link } from "react-router-dom";
 
 function Display() {
   const nameCtx = useContext(UserContext);
@@ -44,9 +45,9 @@ function Display() {
       <h1>Your Favourites</h1>
 
       <div className={styles.favorites}>
-        {nameCtx.names.map((name, index) => (
-          <p key={index} className={styles.favoriteItem}>
-            {name}
+        {nameCtx.fav.map((attraction) => (
+          <p key={attraction.id} className={styles.favoriteItem}>
+            <Link to={`/attraction/${attraction.id}`}>{attraction.name}</Link>
           </p>
         ))}
       </div>
