@@ -5,7 +5,7 @@ import styles from "./HomePage.module.css";
 import "../App.css";
 import { ReactComponent as Star } from "../assets/star.svg";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
-import { UserContext } from "../Components/UserContextProvider";
+import { UserContext } from "../context/UserContextProvider";
 import hero from "../assets/hero.jpg";
 
 function AttractionListing() {
@@ -13,7 +13,7 @@ function AttractionListing() {
   const [selectedType, setSelectedType] = useState("");
   const [attractions, setAttractions] = useState([]);
   const [fourAttractions, setFourAttractions] = useState([]);
-  const [allttractions, setAllAttractions] = useState([]);
+  const [allAttractions, setAllAttractions] = useState([]);
   //const [savedAttractions, setSavedAttractions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeType, setActiveType] = useState(attractionTypes[0] || "");
@@ -346,7 +346,7 @@ function AttractionListing() {
           <div className="text-center">
             {/* <h2>Attractions for {selectedType}</h2> */}
             <ul className={`${styles.lisContent} container`}>
-              {allttractions.map((attraction, index) => (
+              {allAttractions.map((attraction, index) => (
                 <li key={index}>
                   {/* {console.log("attractions:" + attraction)} */}
                   <div className="relative hover-con">

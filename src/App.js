@@ -11,7 +11,7 @@ import { ReactComponent as Arrow } from "./assets/arrow.svg";
 import { ReactComponent as Facebook } from "./assets/facebook-social.svg";
 import { ReactComponent as Twitter } from "./assets/twitter-social.svg";
 import { ReactComponent as Instagram } from "./assets/instagram-social.svg";
-import { UserContext } from "./Components/UserContextProvider";
+import { UserContext } from "./context/UserContextProvider";
 import Display from "./Components/Display";
 
 function App() {

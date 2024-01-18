@@ -4,7 +4,7 @@ import axios from "axios";
 import parse from "html-react-parser";
 import styles from "./AttractionDetail.module.css";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
-import { UserContext } from "./UserContextProvider";
+import { UserContext } from "../context/UserContextProvider";
 
 const initialAttractionState = {
   uuid: "",
@@ -21,7 +21,8 @@ const initialAttractionState = {
 };
 
 function AttractionDetail() {
-  const { savedAttractions, setSavedAttractions, setNameHandler } = useContext(UserContext);
+  const { savedAttractions, setSavedAttractions, setNameHandler } =
+    useContext(UserContext);
   const [attraction, setAttraction] = useState(initialAttractionState);
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
@@ -41,8 +42,8 @@ function AttractionDetail() {
           uuid: id,
           name: response.data.data[0].name,
           rating: (response.data.data[0].rating / 5) * 100,
-          imageUUID: response.data.data[0].images[0].uuid,
-          imageURL: response.data.data[0].images[0].url,
+          imageUUID: response.data.data[0].images[0]?.uuid,
+          // imageURL: response.data.data[0].images[0].url,
           description: response.data.data[0].description,
           tags: [...response.data.data[0].tags],
           body: response.data.data[0].body,
@@ -97,7 +98,7 @@ function AttractionDetail() {
 
   const addressArray = parseAddress();
 
-  const handleSaveAttraction = (id , name) => {
+  const handleSaveAttraction = (id, name) => {
     setSavedAttractions((prev) => ({
       ...prev,
       [id]: !prev[id],
@@ -125,7 +126,7 @@ function AttractionDetail() {
         <div className={styles.titleRow}>
           <h1 className={styles.name}>{attraction.name}</h1>
           <button
-            onClick={() => handleSaveAttraction(id,attraction.name)}
+            onClick={() => handleSaveAttraction(id, attraction.name)}
             className={`star-button ${isAttractionSaved(id) ? "saved" : ""}`}
           >
             ⭐
@@ -171,7 +172,8 @@ function AttractionDetail() {
           href={`https://${attraction.officialWebsite}`}
           className="button-primary"
           style={{ width: "fit-content", margin: "35px 0px" }}
-          target="_blank" rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Visit Website{" "}
           <span>
