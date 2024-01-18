@@ -1,13 +1,14 @@
 .detailContainer {
   display: flex;
   flex-direction: column;
-  margin: 0px 150px;
+  margin: 30px 150px;
 }
 
 .titleRow {
   display: flex;
   justify-content: space-between;
   margin-top: 30px;
+  position: relative;
 }
 
 .name {
@@ -33,10 +34,6 @@
   color: var(--white);
   padding: 7px 15px;
   margin: 4px;
-}
-
-.infoEmphasis {
-  color: var(--orange);
 }
 
 .infoTable {

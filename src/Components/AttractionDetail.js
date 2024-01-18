@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import parse from "html-react-parser";
 import styles from "./AttractionDetail.module.css";
+import { ReactComponent as Star } from "../assets/star.svg";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
 import { UserContext } from "../context/UserContextProvider";
 
@@ -112,24 +113,27 @@ function AttractionDetail() {
 
   return (
     <div className="">
-      <div
-        className={`${styles.detailsHero} relative`}
-        style={{
-          backgroundImage: attraction.imageUUID
-            ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=/${attraction.imageUUID}&mediaType=image)`
-            : `url(${attraction.imageURL})`,
-        }}
-      >
-        <div className="overlay"></div>
-      </div>
+      {attraction.imageUUID && (
+        <div
+          className={`${styles.detailsHero} relative`}
+          style={{
+            backgroundImage: attraction.imageUUID
+              ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=/${attraction.imageUUID}&mediaType=image)`
+              : `url(${attraction.imageURL})`,
+          }}
+        >
+          <div className="overlay"></div>
+        </div>
+      )}
       <div className={`${styles.detailContainer} container`}>
         <div className={styles.titleRow}>
           <h1 className={styles.name}>{attraction.name}</h1>
           <button
             onClick={() => handleSaveAttraction(id, attraction.name)}
             className={`star-button ${isAttractionSaved(id) ? "saved" : ""}`}
+            style={{ borderRadius: "10px" }}
           >
-            ⭐
+            <Star />
           </button>
         </div>
         <div className="rating">
@@ -148,7 +152,7 @@ function AttractionDetail() {
         </ul>
         {parse(attraction.body)}
         <h2 style={{ marginTop: "30px" }}>
-          More <span className={styles.infoEmphasis}>Information</span>
+          More <span className="highlighted-orange">Information</span>
         </h2>
         <table className={styles.infoTable}>
           <tr>
