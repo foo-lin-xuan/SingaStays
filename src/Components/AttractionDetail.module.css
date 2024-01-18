@@ -1,9 +1,3 @@
-.detailContainer {
-  display: flex;
-  flex-direction: column;
-  margin: 30px 150px;
-}
-
 .titleRow {
   display: flex;
   justify-content: space-between;
@@ -11,9 +5,13 @@
   position: relative;
 }
 
+.detailContainer button {
+  top: 10px;
+}
 .name {
   color: var(--orange);
   margin: 0;
+  max-width: 500px;
 }
 
 .tags {
@@ -38,6 +36,7 @@
 
 .infoTable {
   border-collapse: collapse;
+  width: 100%;
 }
 
 .infoTable th {
@@ -51,7 +50,7 @@
 }
 
 .infoTable tr {
-  border-bottom: 0.5px solid var(--green);
+  border-bottom: 1px solid var(--green);
 }
 
 .infoTable td {
@@ -92,4 +91,18 @@
   height: 650px;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 768px) {
+  .detailContainer button {
+    left: 0;
+    top: 0;
+  }
+  .titleRow {
+    margin-top: 0px;
+    padding-top: 70px;
+  }
+  .infoTable th {
+    padding-right: 40px;
+  }
 }

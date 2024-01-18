@@ -87,7 +87,6 @@ function App() {
   return (
     <>
       <Router>
-      
         <header>
           <nav>
             <div className="nav-left">
@@ -108,6 +107,11 @@ function App() {
                     <Link to="/profile">Profile</Link>
                   </li>
                 )}
+                <li className="hide-desktop show-mobile">
+                  <Link onClick={handlerLogIn}>
+                    {isLoggedIn ? "Log Out" : "Log In"}
+                  </Link>
+                </li>
               </ul>
             </div>
             <div className="nav-right">
@@ -124,9 +128,7 @@ function App() {
         </header>
 
         <Routes>
-        {isLoggedIn && (
-          <Route path="profile" element={<Profile />} />
-        )}
+          {isLoggedIn && <Route path="profile" element={<Profile />} />}
           <Route path="/" element={<HomePage />} />
           <Route path="/attractions" element={<AttractionListing />} />
           <Route

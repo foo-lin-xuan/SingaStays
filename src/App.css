@@ -81,6 +81,10 @@ footer * {
   gap: 15px;
 }
 @media only screen and (max-width: 768px) {
+  footer {
+    padding: 50px 40px 36px;
+  }
+
   nav {
     padding: 15px 30px;
     display: block;
@@ -106,5 +110,12 @@ footer * {
 
   nav svg {
     width: 100%;
+  }
+
+  .footer-content .nav-links {
+    justify-content: flex-start;
+  }
+  .footer-content {
+    display: block;
   }
 }

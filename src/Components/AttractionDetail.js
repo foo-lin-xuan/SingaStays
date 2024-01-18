@@ -150,27 +150,29 @@ function AttractionDetail() {
             <li key={tag}>{tag}</li>
           ))}
         </ul>
-        {parse(attraction.body)}
+        <p>{parse(attraction.body)}</p>
         <h2 style={{ marginTop: "30px" }}>
           More <span className="highlighted-orange">Information</span>
         </h2>
         <table className={styles.infoTable}>
-          <tr>
-            <th>Location</th>
-            <td>
-              {addressArray.map((line) => (
-                <div>{line}</div>
-              ))}
-            </td>
-          </tr>
-          <tr>
-            <th>Contact</th>
-            <td>{attraction.contact}</td>
-          </tr>
-          <tr>
-            <th>Email</th>
-            <td>{attraction.officialEmail}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <th>Location</th>
+              <td>
+                {addressArray.map((line) => (
+                  <div>{line}</div>
+                ))}
+              </td>
+            </tr>
+            <tr>
+              <th>Contact</th>
+              <td>{attraction.contact}</td>
+            </tr>
+            <tr>
+              <th>Email</th>
+              <td>{attraction.officialEmail}</td>
+            </tr>
+          </tbody>
         </table>
         <a
           href={`https://${attraction.officialWebsite}`}

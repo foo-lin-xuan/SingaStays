@@ -171,7 +171,7 @@ function AttractionListing() {
     <div className="">
       <section className={styles.heroSection}>
         <div className="hide-desktop show-mobile">
-          <img src={hero} alt="picture of myself" />
+          <img src={hero} alt="picture of colourful shophouses" />
         </div>
         <div className="overlay hide-mobile show-desktop"></div>
         <div className={styles.content}>
@@ -182,8 +182,8 @@ function AttractionListing() {
           </h1>
           <p className="big">
             Embark on a joyful stay in Singapore with SingaStays! Explore
-            tailored accommodations for a perfect blend of comfort and
-            adventure. Your unforgettable experience begins here.
+            tailored attractions for a perfect blend of comfort and adventure.
+            Your unforgettable experience begins here.
           </p>
           <Link to={`/attractions/`} className="button-primary">
             Explore Singapore
@@ -237,14 +237,6 @@ function AttractionListing() {
                       {attraction.name}
                     </Link>
                   </h3>
-                  {/* <button
-                  onClick={() => handleSaveAttraction(attraction.name)}
-                  className={`star-button qww ${
-                    isAttractionSaved(attraction.name) ? "saved" : ""
-                  }`}
-                >
-                  <Star />
-                </button> */}
                   <button
                     onClick={() =>
                       handleSaveAttraction(attraction.uuid, attraction.name)
@@ -270,12 +262,12 @@ function AttractionListing() {
           <div className={styles.exploreText}>
             <h2>
               <span className="highlighted-orange">Explore </span>
-              Accommodations <br />
+              Attractions <br />
               in Singapore
             </h2>
             <p>
               Discover the perfect stay that suits your preferences. Click on
-              the tags below to explore accommodations tailored to your needs.
+              the tags below to explore attractions tailored to your needs.
             </p>
           </div>
           <ul className={styles.tagContainer}>

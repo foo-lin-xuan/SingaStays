@@ -214,6 +214,10 @@ button.link {
   padding: 40px 80px;
 }
 
+.small.container {
+  max-width: 1200px;
+}
+
 .overlay {
   background: linear-gradient(180deg, rgba(224, 223, 231, 0.15) 48%, #fff 100%);
   width: 100%;
@@ -296,6 +300,10 @@ button.link {
 
 .star-button.saved svg path {
   fill: var(--white);
+}
+
+.hide-desktop {
+  display: none;
 }
 
 @media only screen and (max-width: 1024px) {

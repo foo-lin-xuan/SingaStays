@@ -5,7 +5,7 @@ import { UserContext } from "../context/UserContextProvider";
 import styles from "./HomePage.module.css";
 import { ReactComponent as Star } from "../assets/star.svg";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
-import hero from "../assets/hero.jpg";
+import hero from "../assets/hero-listing.png";
 
 function AttractionListing() {
   const [attractionTypes, setAttractionTypes] = useState([]);
@@ -124,10 +124,10 @@ function AttractionListing() {
   }
 
   return (
-    <div className="">
+    <div className={styles.attractionListing}>
       <section className={styles.heroSection}>
         <div className="hide-desktop show-mobile">
-          <img src={hero} alt="picture of myself" />
+          <img src={hero} alt="picture of a family showing marina bay sands" />
         </div>
         <div className="overlay hide-mobile show-desktop"></div>
         <div className={styles.content}>
@@ -138,8 +138,8 @@ function AttractionListing() {
           </h1>
           <p className="big">
             Embark on a joyful stay in Singapore with SingaStays! Explore
-            tailored accommodations for a perfect blend of comfort and
-            adventure. Your unforgettable experience begins here.
+            tailored attractions for a perfect blend of comfort and adventure.
+            Your unforgettable experience begins here.
           </p>
           <Link to={`/attractions/`} className="button-primary">
             Explore Singapore
@@ -154,12 +154,12 @@ function AttractionListing() {
           <div className={styles.exploreText}>
             <h2>
               <span className="highlighted-orange">Explore </span>
-              Accommodations <br />
+              Attractions <br />
               in Singapore
             </h2>
             <p>
               Discover the perfect stay that suits your preferences. Click on
-              the tags below to explore accommodations tailored to your needs.
+              the tags below to explore attractions tailored to your needs.
             </p>
           </div>
           <ul className={styles.tagContainer}>
