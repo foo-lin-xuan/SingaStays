@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { UserContext } from "../context/UserContextProvider";
-import Display from "./Display";
 import styles from "./HomePage.module.css";
 import { ReactComponent as Star } from "../assets/star.svg";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";

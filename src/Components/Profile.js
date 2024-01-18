@@ -1,11 +1,11 @@
-// Display.js
+// Proflile.js
 import { useContext } from "react";
 import { UserContext } from "../context/UserContextProvider";
 import profileImage from "../assets/profilepic.png";
-import styles from "./Display.module.css";
+import styles from "./Profile.module.css";
 import { Link } from "react-router-dom";
 
-function Display() {
+function Profile() {
   const nameCtx = useContext(UserContext);
   const profileData = {
     name: "Loraine Dee",
@@ -55,4 +55,4 @@ function Display() {
   );
 }
 
-export default Display;
+export default Profile;

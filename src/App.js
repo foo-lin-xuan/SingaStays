@@ -12,7 +12,7 @@ import { ReactComponent as Facebook } from "./assets/facebook-social.svg";
 import { ReactComponent as Twitter } from "./assets/twitter-social.svg";
 import { ReactComponent as Instagram } from "./assets/instagram-social.svg";
 import { UserContext } from "./context/UserContextProvider";
-import Display from "./Components/Display";
+import Profile from "./Components/Profile";
 
 function App() {
   const [attractionTypes, setAttractionTypes] = useState([]);
@@ -87,6 +87,7 @@ function App() {
   return (
     <>
       <Router>
+      
         <header>
           <nav>
             <div className="nav-left">
@@ -102,12 +103,9 @@ function App() {
                 <li>
                   <Link to="/attractions">Attractions</Link>
                 </li>
-                <li>
-                  <Link to="/display">Display</Link>
-                </li>
                 {isLoggedIn && (
                   <li>
-                    <a href="#">Profile</a>
+                    <Link to="/profile">Profile</Link>
                   </li>
                 )}
               </ul>
@@ -126,6 +124,9 @@ function App() {
         </header>
 
         <Routes>
+        {isLoggedIn && (
+          <Route path="profile" element={<Profile />} />
+        )}
           <Route path="/" element={<HomePage />} />
           <Route path="/attractions" element={<AttractionListing />} />
           <Route
@@ -137,7 +138,7 @@ function App() {
               />
             }
           />
-          <Route path="display" element={<Display />} />
+          <Route path="*" element={<HomePage />} />
         </Routes>
       </Router>
       <footer>
