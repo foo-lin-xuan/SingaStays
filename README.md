@@ -18,8 +18,12 @@
 ## Live site URL: 
 
 ## Credits
-Aishah
-Lin Xuan
-Daniel 
-Poh YH
-Trav
+Aishah: Baseline codes (BrowserRouters, Routes, etc), responsive design, Favourites
+
+Lin Xuan: Attraction detail page, Favourites
+
+Daniel: Homepage / Attractions listing pages, Favourites
+
+Poh YH: User Profile, Favourites
+
+Trav: Homepage / Attractions listing pages
