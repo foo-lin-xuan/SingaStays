@@ -51,7 +51,10 @@ function AttractionDetail() {
           address: response.data.data[0].address,
           contact: response.data.data[0].contact.primaryContactNo,
           officialEmail: response.data.data[0].officialEmail,
-          officialWebsite: response.data.data[0].officialWebsite,
+          officialWebsite:
+            response.data.data[0].officialWebsite.search("http") > -1
+              ? response.data.data[0].officialWebsite
+              : "https://" + response.data.data[0].officialWebsite,
         });
       } catch (error) {
         console.error("Error fetching attraction details:", error);
@@ -175,13 +178,13 @@ function AttractionDetail() {
           </tbody>
         </table>
         <a
-          href={`https://${attraction.officialWebsite}`}
+          href={attraction.officialWebsite}
           className="button-primary"
           style={{ width: "fit-content", margin: "35px 0px" }}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Visit Website{" "}
+          Visit Website
           <span>
             <Arrow />
           </span>
