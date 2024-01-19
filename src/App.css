@@ -63,6 +63,10 @@ footer * {
   padding-bottom: 10px;
 }
 
+.footer-content .nav-links a {
+  color: var(--white);
+}
+
 .footer-content li a,
 .footer-content li button {
   font-size: 14px;
