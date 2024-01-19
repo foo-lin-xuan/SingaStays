@@ -110,10 +110,14 @@ section.section {
   margin-bottom: -30px; /* Negative margin to offset the margin-bottom on the last row */
 }
 
+.exploreIndividualContent {
+  width: 310px;
+}
+
 .detailsHero {
   background-color: #fafafa;
   width: 100%;
-  height: 330px;
+  height: 310px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -172,7 +176,7 @@ section.exploreContainer {
     padding: 0 40px;
     padding-bottom: 30px;
   }
-  .detailsHero {
+  .exploreIndividualContent {
     width: 100%;
   }
 }
@@ -184,6 +188,11 @@ section.exploreContainer {
   }
 
   .attractionListing .heroSection {
+    background-image: none;
+    height: auto;
+  }
+
+  .homeListing .heroSection {
     background-image: none;
     height: auto;
   }

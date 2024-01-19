@@ -15,7 +15,6 @@ function AttractionListing() {
   const [attractions, setAttractions] = useState([]);
   const [fourAttractions, setFourAttractions] = useState([]);
   const [allAttractions, setAllAttractions] = useState([]);
-  //const [savedAttractions, setSavedAttractions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeType, setActiveType] = useState(attractionTypes[0] || "");
 
@@ -131,22 +130,6 @@ function AttractionListing() {
     setActiveType(type);
   };
 
-  // const handleSaveAttraction = (e, name) => {
-  //   setFavHandler(name);
-  //   let newAttraction = [...savedAttractions];
-  //   if (newAttraction.includes(name)) {
-  //     newAttraction = savedAttractions.filter((at) => at !== name);
-  //   } else {
-  //     newAttraction.push(name);
-  //   }
-  //   setSavedAttractions(newAttraction);
-  // };
-
-  // const isAttractionSaved = (name) => {
-  //   return savedAttractions && savedAttractions.indexOf(name) > -1
-  //     ? true
-  //     : false;
-  // };
   const handleSaveAttraction = (id, name) => {
     setSavedAttractions((prev) => ({
       ...prev,
@@ -169,7 +152,7 @@ function AttractionListing() {
   }
 
   return (
-    <div className="">
+    <div className={styles.homeListing}>
       <section className={styles.heroSection}>
         <div className="hide-desktop show-mobile">
           <img src={hero} alt="picture of colourful shophouses" />
@@ -220,18 +203,6 @@ function AttractionListing() {
               <div className="hover">
                 {/* {console.log("attractions:" + attraction)} */}
                 <div className={`${styles.inspo} relative`}>
-                  {/* <Link
-                    to={`/attraction/${attraction.uuid}`}
-                    className={`${styles.inspo}`}
-                    style={{
-                      backgroundImage: attraction.imageUuid
-                        ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image`
-                        : `url(${attraction.imageURL})`,
-                    }}
-                  >
-                    <div className="black-overlay"></div>
-                  </Link> */}
-
                   {attraction.imageUuid && attraction.imageUuid.length > 0 ? (
                     <Link
                       to={`/attraction/${attraction.uuid}`}
@@ -311,22 +282,13 @@ function AttractionListing() {
         </div>
         {selectedType && (
           <div className="text-center">
-            {/* <h2>Attractions for {selectedType}</h2> */}
             <ul className={`${styles.lisContent} container`}>
               {attractions.map((attraction, index) => (
                 <li key={index}>
                   {/* {console.log("attractions:" + attraction)} */}
-                  <div className="relative hover-con">
-                    {/* <Link
-                      to={`/attraction/${attraction.uuid}`}
-                      className={`${styles.detailsHero} relative main-hover `}
-                      style={{
-                        backgroundImage: attraction.imageUuid
-                          ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image`
-                          : `url(${attraction.imageURL})`,
-                      }}
-                    ></Link> */}
-
+                  <div
+                    className={`relative hover-con ${styles.exploreIndividualContent}`}
+                  >
                     {attraction.imageUuid && attraction.imageUuid.length > 0 ? (
                       <Link
                         to={`/attraction/${attraction.uuid}`}
@@ -381,12 +343,13 @@ function AttractionListing() {
         )}
         {!selectedType && (
           <div className="text-center">
-            {/* <h2>Attractions for {selectedType}</h2> */}
             <ul className={`${styles.lisContent} container`}>
               {allAttractions.map((attraction, index) => (
                 <li key={index}>
                   {/* {console.log("attractions:" + attraction)} */}
-                  <div className="relative hover-con">
+                  <div
+                    className={`relative hover-con ${styles.exploreIndividualContent}`}
+                  >
                     <Link
                       to={`/attraction/${attraction.uuid}`}
                       className={`${styles.detailsHero} relative main-hover `}

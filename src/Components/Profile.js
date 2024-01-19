@@ -36,39 +36,22 @@ function Profile() {
             {profileData.description}
           </p>
           <table>
-            <tr>
-              <th>Name</th>
-              <td>{profileData.name}</td>
-            </tr>
-            <tr>
-              <th>Email</th>
-              <td>{profileData.email}</td>
-            </tr>
-            <tr>
-              <th>Phone Number</th>
-              <td>{profileData.mobile}</td>
-            </tr>
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <td>{profileData.name}</td>
+              </tr>
+              <tr>
+                <th>Email</th>
+                <td>{profileData.email}</td>
+              </tr>
+              <tr>
+                <th>Phone Number</th>
+                <td>{profileData.mobile}</td>
+              </tr>
+            </tbody>
           </table>
         </div>
-
-        {/* <div className={`${styles.profileDetails} text-left`}>
-          <p>
-            <strong className={styles.orangeText}></strong>{" "}
-            {profileData.description}
-          </p>
-          <p>
-            <strong className={styles.orangeText}>Name:</strong>{" "}
-            {profileData.name}
-          </p>
-          <p>
-            <strong className={styles.orangeText}>Email:</strong>{" "}
-            {profileData.email}
-          </p>
-          <p>
-            <strong className={styles.orangeText}>Mobile:</strong>{" "}
-            {profileData.mobile}
-          </p>
-        </div> */}
       </div>
       <div className={`${styles.favSection} text-center`}>
         <h2>

@@ -12,7 +12,6 @@ function AttractionListing() {
   const [attractionTypes, setAttractionTypes] = useState([]);
   const [selectedType, setSelectedType] = useState("");
   const [attractions, setAttractions] = useState([]);
-  //const [savedAttractions, setSavedAttractions] = useState({});
   const [allAttractions, setAllAttractions] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [activeType, setActiveType] = useState(attractionTypes[0] || "");
@@ -50,7 +49,6 @@ function AttractionListing() {
 
   const fetchAllAttractions = async () => {
     try {
-      // const apiUrl = `https://api.stb.gov.sg/content/common/v2/search?dataset=adventure`;
       const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=adventure`;
       const headers = {
         Accept: "application/json",
@@ -178,12 +176,14 @@ function AttractionListing() {
               {attractions.map((attraction, index) => (
                 <li key={index}>
                   {/* {console.log("attractions:" + attraction)} */}
-                  <div className="relative hover-con">
+                  <div
+                    className={`relative hover-con ${styles.exploreIndividualContent}`}
+                  >
                     {/* {attraction.imageUUID ? ( */}
                     {attraction.imageUuid && attraction.imageUuid.length > 0 ? (
                       <Link
                         to={`/attraction/${attraction.uuid}`}
-                        className={`${styles.detailsHero} relative main-hover 3333`}
+                        className={`${styles.detailsHero} relative main-hover`}
                         style={{
                           backgroundImage: attraction.imageUuid
                             ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image)`
@@ -193,21 +193,12 @@ function AttractionListing() {
                     ) : (
                       <Link
                         to={`/attraction/${attraction.uuid}`}
-                        className={`${styles.detailsHero} relative main-hover 444422`}
+                        className={`${styles.detailsHero} relative main-hover`}
                         style={{
                           backgroundImage: `url(${placeholder})`,
                         }}
                       ></Link>
                     )}
-                    {/* ) : (
-                      <Link
-                        to={`/attraction/${attraction.uuid}`}
-                        className={`${styles.detailsHero} relative main-hover 2222 `}
-                        style={{
-                          backgroundImage: `url("https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=/1013ad4570b70d649c4b1beadc1a7fd2476&mediaType=image")`,
-                        }}
-                      ></Link>
-                    )} */}
 
                     <button
                       onClick={() =>
@@ -240,13 +231,15 @@ function AttractionListing() {
               {allAttractions.map((attraction, index) => (
                 <li key={index}>
                   {/* {console.log("attractions:" + attraction)} */}
-                  <div className="relative hover-con">
+                  <div
+                    className={`relative hover-con ${styles.exploreIndividualContent}`}
+                  >
                     {/* {console.log("attractions:", attraction.imageUuid)} */}
 
                     {attraction.imageUuid && attraction.imageUuid.length > 0 ? (
                       <Link
                         to={`/attraction/${attraction.uuid}`}
-                        className={`${styles.detailsHero} relative main-hover 3333`}
+                        className={`${styles.detailsHero} relative main-hover`}
                         style={{
                           backgroundImage: attraction.imageUuid
                             ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image)`
@@ -256,32 +249,12 @@ function AttractionListing() {
                     ) : (
                       <Link
                         to={`/attraction/${attraction.uuid}`}
-                        className={`${styles.detailsHero} relative main-hover 4444`}
+                        className={`${styles.detailsHero} relative main-hover`}
                         style={{
                           backgroundImage: `url(${placeholder})`,
                         }}
                       ></Link>
                     )}
-
-                    {/* {attraction.imageUUID == "undefined" ? (
-                      <Link
-                        to={`/attraction/${attraction.uuid}`}
-                        className={`${styles.detailsHero} relative main-hover 4444`}
-                        style={{
-                          backgroundImage: `url("https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=/1013ad4570b70d649c4b1beadc1a7fd2476&mediaType=image")`,
-                        }}
-                      ></Link>
-                    ) : (
-                      <Link
-                        to={`/attraction/${attraction.uuid}`}
-                        className={`${styles.detailsHero} relative main-hover 3333`}
-                        style={{
-                          backgroundImage: attraction.imageUuid
-                            ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image)`
-                            : `url(${attraction.imageURL})`,
-                        }}
-                      ></Link>
-                    )} */}
 
                     <button
                       onClick={() =>
