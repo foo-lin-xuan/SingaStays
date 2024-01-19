@@ -142,55 +142,61 @@ function App() {
           />
           <Route path="*" element={<HomePage />} />
         </Routes>
-      </Router>
-      <footer>
-        <div>
-          <FooterLogo />
-        </div>
-        <div className="footer-content">
-          <div className="footer-tagline">
-            <p className="small">
-              Discover Comfort, Embrace Adventure – Your Joyful Stay in
-              Singapore Begins with SingaStays
-            </p>
-          </div>
+
+        <footer>
           <div>
-            <ul className="nav-links">
-              <li>
-                <a href="/">Home</a>
-              </li>
-              <li>
-                <a href="/attractions">Attractions</a>
-              </li>
-              <li>
-                <button onClick={handlerLogIn} className="link">
-                  {isLoggedIn ? "Log Out" : "Log In"}
-                </button>
-              </li>
-            </ul>
+            <FooterLogo />
           </div>
-        </div>
-        <div className="copyright-content">
-          <p className="small">Copyright ©2023</p>
-          <div className="socials">
-            <div>
-              <a href="#">
-                <Facebook />
-              </a>
+          <div className="footer-content">
+            <div className="footer-tagline">
+              <p className="small">
+                Discover Comfort, Embrace Adventure – Your Joyful Stay in
+                Singapore Begins with SingaStays
+              </p>
             </div>
             <div>
-              <a href="#">
-                <Twitter />
-              </a>
-            </div>
-            <div>
-              <a href="#">
-                <Instagram />
-              </a>
+              <ul className="nav-links">
+                <li>
+                  <Link to="/">Home</Link>
+                </li>
+                <li>
+                  <Link to="/attractions">Attractions</Link>
+                </li>
+                {isLoggedIn && (
+                  <li>
+                    <Link to="/profile">Profile</Link>
+                  </li>
+                )}
+                <li>
+                  <button onClick={handlerLogIn} className="link">
+                    {isLoggedIn ? "Log Out" : "Log In"}
+                  </button>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-      </footer>
+          <div className="copyright-content">
+            <p className="small">Copyright ©2023</p>
+            <div className="socials">
+              <div>
+                <a href="#">
+                  <Facebook />
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <Twitter />
+                </a>
+              </div>
+              <div>
+                <a href="#">
+                  <Instagram />
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </Router>
     </>
   );
 }

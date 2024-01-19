@@ -9,8 +9,9 @@
   position: relative;
 }
 
-.detailContainer button {
+.detailContainer .detailsStar {
   top: 10px;
+  border-radius: 10px;
 }
 .name {
   color: var(--orange);
@@ -98,7 +99,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  .detailContainer button {
+  .detailContainer .detailsStar {
     left: 0;
     top: 0;
   }

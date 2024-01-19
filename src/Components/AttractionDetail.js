@@ -142,13 +142,23 @@ function AttractionDetail() {
       <div className={`${styles.detailContainer} container`}>
         <div className={styles.titleRow}>
           <h1 className={styles.name}>{attraction.name}</h1>
-          <button
+          {/* <button
             onClick={() => handleSaveAttraction(id, attraction.name)}
             className={`star-button ${isAttractionSaved(id) ? "saved" : ""}`}
             style={{ borderRadius: "10px" }}
           >
             <Star />
-          </button>
+          </button> */}
+
+          <div className={`${styles.detailsStar} star-button`}>
+            <button
+              onClick={() => handleSaveAttraction(id, attraction.name)}
+              className={`${isAttractionSaved(id) ? "saved" : ""}`}
+              style={{ borderRadius: "10px" }}
+            >
+              <Star />
+            </button>
+          </div>
         </div>
         <div className="rating">
           <div className={styles.starOuter}>

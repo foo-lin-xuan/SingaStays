@@ -273,9 +273,6 @@ button.link {
   border: none;
   font-size: 20px;
   cursor: pointer;
-  color: transparent; /* Keep the star transparent initially */
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000; /* Simulate border */
   position: absolute;
   bottom: 0;
   right: 0;
@@ -285,13 +282,25 @@ button.link {
   border-top-left-radius: 10px;
 }
 
-.star-button:hover svg path {
-  fill: var(--white);
+.star-button button {
+  outline: 0;
+  border: 0;
+  background-color: initial;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  border-bottom-right-radius: 10px;
+  border-top-left-radius: 10px;
+  cursor: pointer;
 }
 
 .star-button svg {
-  width: 20px;
-  margin-top: 5px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  max-width: 21px;
   height: auto;
 }
 
@@ -299,18 +308,18 @@ button.link {
   stroke: var(--white);
 }
 
-.star-button.saved {
-  color: yellow; /* Change to yellow when saved */
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000; /* Keep border effect */
-}
-
-.star-button.saved svg path {
+.star-button button.saved svg path {
   fill: var(--white);
 }
 
 .hide-desktop {
   display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .star-button:hover svg path {
+    fill: var(--white);
+  }
 }
 
 @media only screen and (max-width: 1024px) {
@@ -319,14 +328,7 @@ button.link {
     height: 55px;
   }
   .star-button svg {
-    width: 27px;
-    margin-left: -5px;
-    display: block;
-  }
-  @media (hover: hover) {
-    .star-button:hover svg path {
-      fill: inherit;
-    }
+    max-width: 27px;
   }
 }
 

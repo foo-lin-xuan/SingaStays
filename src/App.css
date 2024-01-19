@@ -118,6 +118,7 @@ footer * {
 
   .footer-content .nav-links {
     justify-content: flex-start;
+    gap: 15px;
   }
   .footer-content {
     display: block;

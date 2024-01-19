@@ -215,7 +215,6 @@ section.exploreContainer {
     padding: 0 20px;
   }
   .textContent {
-    padding: 0 50px;
-    padding-bottom: 20px;
+    padding: 0 50px 20px 30px;
   }
 }

@@ -200,16 +200,18 @@ function AttractionListing() {
                       ></Link>
                     )}
 
-                    <button
-                      onClick={() =>
-                        handleSaveAttraction(attraction.uuid, attraction.name)
-                      }
-                      className={`star-button ${
-                        isAttractionSaved(attraction.uuid) ? "saved" : ""
-                      }`}
-                    >
-                      <Star />
-                    </button>
+                    <div className="star-button">
+                      <button
+                        onClick={() =>
+                          handleSaveAttraction(attraction.uuid, attraction.name)
+                        }
+                        className={` ${
+                          isAttractionSaved(attraction.uuid) ? "saved" : ""
+                        }`}
+                      >
+                        <Star />
+                      </button>
+                    </div>
                   </div>
                   <div className={`${styles.exploreContent} text-left`}>
                     <h4>
@@ -256,16 +258,18 @@ function AttractionListing() {
                       ></Link>
                     )}
 
-                    <button
-                      onClick={() =>
-                        handleSaveAttraction(attraction.uuid, attraction.name)
-                      }
-                      className={`star-button ${
-                        isAttractionSaved(attraction.uuid) ? "saved" : ""
-                      }`}
-                    >
-                      <Star />
-                    </button>
+                    <div className="star-button">
+                      <button
+                        onClick={() =>
+                          handleSaveAttraction(attraction.uuid, attraction.name)
+                        }
+                        className={` ${
+                          isAttractionSaved(attraction.uuid) ? "saved" : ""
+                        }`}
+                      >
+                        <Star />
+                      </button>
+                    </div>
                   </div>
                   <div className={`${styles.exploreContent} text-left`}>
                     <h4>
