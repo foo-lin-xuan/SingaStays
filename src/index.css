@@ -320,6 +320,13 @@ button.link {
   }
   .star-button svg {
     width: 27px;
+    margin-left: -5px;
+    display: block;
+  }
+  @media (hover: hover) {
+    .star-button:hover svg path {
+      fill: inherit;
+    }
   }
 }
 
