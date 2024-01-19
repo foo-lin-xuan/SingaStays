@@ -6,6 +6,7 @@ import styles from "./AttractionDetail.module.css";
 import { ReactComponent as Star } from "../assets/star.svg";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
 import { UserContext } from "../context/UserContextProvider";
+import placeholder from "../assets/placeholder.jpg";
 
 const initialAttractionState = {
   uuid: "",
@@ -115,8 +116,8 @@ function AttractionDetail() {
   };
 
   return (
-    <div className="">
-      {attraction.imageUUID && (
+    <div className={styles.attractionDetailCon}>
+      {attraction.imageUUID ? (
         <div
           className={`${styles.detailsHero} relative`}
           style={{
@@ -127,7 +128,17 @@ function AttractionDetail() {
         >
           <div className="overlay"></div>
         </div>
+      ) : (
+        <div
+          className={`${styles.detailsHero} relative`}
+          style={{
+            backgroundImage: `url(${placeholder})`,
+          }}
+        >
+          <div className="overlay"></div>
+        </div>
       )}
+
       <div className={`${styles.detailContainer} container`}>
         <div className={styles.titleRow}>
           <h1 className={styles.name}>{attraction.name}</h1>
@@ -153,7 +164,7 @@ function AttractionDetail() {
             <li key={tag}>{tag}</li>
           ))}
         </ul>
-        <p>{parse(attraction.body)}</p>
+        <div className="description-body">{parse(attraction.body)}</div>
         <h2 style={{ marginTop: "30px" }}>
           More <span className="highlighted-orange">Information</span>
         </h2>
@@ -163,7 +174,7 @@ function AttractionDetail() {
               <th>Location</th>
               <td>
                 {addressArray.map((line) => (
-                  <div>{line}</div>
+                  <div key={line}>{line}</div>
                 ))}
               </td>
             </tr>

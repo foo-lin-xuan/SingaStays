@@ -35,14 +35,14 @@ export function UserContextProvider({ children }) {
 
       if (attractionIndex !== -1) {
         // If the name is already in the list, remove it
-        console.log("Removing " + name);
+        // console.log("Removing " + name);
         return [
           ...prevNames.slice(0, attractionIndex),
           ...prevNames.slice(attractionIndex + 1),
         ];
       } else {
         // If the name is not in the list, add it
-        console.log("Adding " + name);
+        // console.log("Adding " + name);
         setSavedAttractions((prev) => {
           return { ...prev, [name]: !prev[name] };
         });

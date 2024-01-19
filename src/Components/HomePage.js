@@ -7,6 +7,7 @@ import { ReactComponent as Star } from "../assets/star.svg";
 import { ReactComponent as Arrow } from "../assets/arrow.svg";
 import { UserContext } from "../context/UserContextProvider";
 import hero from "../assets/hero.jpg";
+import placeholder from "../assets/placeholder.jpg";
 
 function AttractionListing() {
   const [attractionTypes, setAttractionTypes] = useState([]);
@@ -219,7 +220,7 @@ function AttractionListing() {
               <div className="hover">
                 {/* {console.log("attractions:" + attraction)} */}
                 <div className={`${styles.inspo} relative`}>
-                  <Link
+                  {/* <Link
                     to={`/attraction/${attraction.uuid}`}
                     className={`${styles.inspo}`}
                     style={{
@@ -229,7 +230,31 @@ function AttractionListing() {
                     }}
                   >
                     <div className="black-overlay"></div>
-                  </Link>
+                  </Link> */}
+
+                  {attraction.imageUuid && attraction.imageUuid.length > 0 ? (
+                    <Link
+                      to={`/attraction/${attraction.uuid}`}
+                      className={`${styles.inspo}`}
+                      style={{
+                        backgroundImage: attraction.imageUuid
+                          ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image`
+                          : `url(${attraction.imageURL})`,
+                      }}
+                    >
+                      <div className="black-overlay"></div>
+                    </Link>
+                  ) : (
+                    <Link
+                      to={`/attraction/${attraction.uuid}`}
+                      className={`${styles.inspo}`}
+                      style={{
+                        backgroundImage: `url(${placeholder})`,
+                      }}
+                    >
+                      <div className="black-overlay"></div>
+                    </Link>
+                  )}
                 </div>
                 <div className={styles.textContent}>
                   <h3>
@@ -292,7 +317,7 @@ function AttractionListing() {
                 <li key={index}>
                   {/* {console.log("attractions:" + attraction)} */}
                   <div className="relative hover-con">
-                    <Link
+                    {/* <Link
                       to={`/attraction/${attraction.uuid}`}
                       className={`${styles.detailsHero} relative main-hover `}
                       style={{
@@ -300,7 +325,27 @@ function AttractionListing() {
                           ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image`
                           : `url(${attraction.imageURL})`,
                       }}
-                    ></Link>
+                    ></Link> */}
+
+                    {attraction.imageUuid && attraction.imageUuid.length > 0 ? (
+                      <Link
+                        to={`/attraction/${attraction.uuid}`}
+                        className={`${styles.detailsHero} relative main-hover `}
+                        style={{
+                          backgroundImage: attraction.imageUuid
+                            ? `url(https://tih.stb.gov.sg/bin/GetMediaByUuid?uuid=${attraction.imageUuid}&mediaType=image`
+                            : `url(${attraction.imageURL})`,
+                        }}
+                      ></Link>
+                    ) : (
+                      <Link
+                        to={`/attraction/${attraction.uuid}`}
+                        className={`${styles.detailsHero} relative main-hover `}
+                        style={{
+                          backgroundImage: `url(${placeholder})`,
+                        }}
+                      ></Link>
+                    )}
 
                     <button
                       onClick={() =>
