@@ -16,6 +16,8 @@
 > As a user, I would like to be able to remove attractions from my favourites on my profile so I can remove the ones that I have visited.
 
 ## API: https://tih-dev.stb.gov.sg/content-api/apis
+
+## Reference: https://tih.stb.gov.sg/content/tih/en/tourism-information/product-and-experience-listing.html
   
 
 ## Live site URL: 
