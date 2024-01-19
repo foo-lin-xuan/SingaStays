@@ -20,7 +20,7 @@
 ## Reference: https://tih.stb.gov.sg/content/tih/en/tourism-information/product-and-experience-listing.html
   
 
-## Live site URL: 
+## Live site URL: https://singastays.netlify.app/
 
 ## Credits
 Aishah: Baseline codes (BrowserRouters, Routes, etc), responsive design, Favourites
