@@ -13,7 +13,10 @@
 
 > As a user, I would like to view the site on my mobile devices so I can visit the site on the go.
 
-> As a user, I would like to be able to remove attractions from my favourites on my profile so I can remove the ones that I have visited.    
+> As a user, I would like to be able to remove attractions from my favourites on my profile so I can remove the ones that I have visited.
+
+## API: https://tih-dev.stb.gov.sg/content-api/apis
+  
 
 ## Live site URL: 
 
