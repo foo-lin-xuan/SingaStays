@@ -36,7 +36,7 @@ function AttractionDetail() {
         const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=uuids&searchValues=${id}`;
         const headers = {
           Accept: "application/json",
-          "X-API-Key": "3333nnLR8vJMmXyWgHreVCOXlAQqqswn", // Your API key
+          "X-API-Key": process.env.REACT_APP_API_KEY,
         };
 
         const response = await axios.get(apiUrl, { headers });

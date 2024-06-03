@@ -33,7 +33,7 @@ function AttractionListing() {
         "https://api.stb.gov.sg/content/common/v2/types?category=attractions";
       const headers = {
         Accept: "application/json",
-        "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Your API key
+        "X-API-Key": process.env.REACT_APP_API_KEY,
       };
 
       const response = await axios.get(apiUrl, { headers });
@@ -52,7 +52,7 @@ function AttractionListing() {
       const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=adventure`;
       const headers = {
         Accept: "application/json",
-        "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Your API key
+        "X-API-Key": process.env.REACT_APP_API_KEY,
       };
 
       const response = await axios.get(apiUrl, { headers });
@@ -76,7 +76,7 @@ function AttractionListing() {
       const apiUrl = `https://api.stb.gov.sg/content/attractions/v2/search?searchType=keyword&searchValues=${type}`;
       const headers = {
         Accept: "application/json",
-        "X-API-Key": "nE2LLxGGycJ7Egvtg2xXJZOpXNOVbKFW", // Your API key
+        "X-API-Key": process.env.REACT_APP_API_KEY,
       };
 
       const response = await axios.get(apiUrl, { headers });
