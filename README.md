@@ -3,6 +3,7 @@
 ## Project Description: A simple site on list of attractions in Singapore
 
 ## User Stories
+
 > As a user, I would like to have a list of various attractions in Singapore so I can plan where to go with my family
 
 > As a user, I would like to have a set of categories related to the attractions so I can decide what type of attractons I want to have with my family
@@ -18,11 +19,11 @@
 ## API: https://tih-dev.stb.gov.sg/content-api/apis
 
 ## Reference: https://tih.stb.gov.sg/content/tih/en/tourism-information/product-and-experience-listing.html
-  
 
-## Live site URL: https://singastays.netlify.app/
+## Live site URL: https://singastays-lx.netlify.app/
 
 ## Credits
+
 Aishah: Baseline codes (BrowserRouters, Routes, etc), responsive design, Favourites
 
 Lin Xuan: Attraction detail page, Favourites
