@@ -1,35 +1,75 @@
-# Project Name: SingaStays
+# SingaStays
 
-## Project Description: A simple site on list of attractions in Singapore
+SingaStays is a mock website designed to help users find attractions in Singapore. Users can browse by categories, view details, and add to favourites.
 
-## User Stories
+[Live Site](https://singastays-lx.netlify.app/)
 
-> As a user, I would like to have a list of various attractions in Singapore so I can plan where to go with my family
+## Features
 
-> As a user, I would like to have a set of categories related to the attractions so I can decide what type of attractons I want to have with my family
+- Browse by categories
+- View detailed information for each attraction
+- Add attraction to favourites
+- View favourites in profile
 
-> As a user, I would like to have the details of each attraction so that I can have an idea what each attraction is about
+## Tech Stack
 
-> As a user, I would like to save each attraction as favourites to my profile so I can revisit the saved attractions for future references
+- React JS
 
-> As a user, I would like to view the site on my mobile devices so I can visit the site on the go.
+## Limitations
 
-> As a user, I would like to be able to remove attractions from my favourites on my profile so I can remove the ones that I have visited.
+- SingaStays is a mock website and does not have user management capabilities. The user profile is currently a placeholder and is not customisable.
+- Favorites are lost upon reloading or navigating out of the site.
 
-## API: https://tih-dev.stb.gov.sg/content-api/apis
+## API Connection
 
-## Reference: https://tih.stb.gov.sg/content/tih/en/tourism-information/product-and-experience-listing.html
+SingaStays connects to third-party APIs to fetch information about attractions in Singapore. The API provides data such as attraction categories, names, descriptions, images, and more information. The project utilises this data to populate the attraction listings and details pages.
 
-## Live site URL: https://singastays-lx.netlify.app/
+The APIs used in this project are [TIH Content User APIs](https://tih-dev.stb.gov.sg/content-api/apis).
 
-## Credits
+## Group Contributions
 
-Aishah: Baseline codes (BrowserRouters, Routes, etc), responsive design, Favourites
+This project was originally developed by a team of contributors. The key features and initial implementation were done by:
 
-Lin Xuan: Attraction detail page, Favourites
+- Lin Xuan: Worked on attraction detail page, favourites
+- Aishah: Worked on baseline codes (BrowserRouters, Routes, etc), responsive design, favourites
+- YH: User profile page, favourites
+- Travis: Homepage, attractions listing page
+- Daniel: Homepage, attractions listing page, favourites
 
-Daniel: Homepage / Attractions listing pages, Favourites
+[Original Live Site](https://singastays.netlify.app/)
 
-Poh YH: User Profile, Favourites
+[Original GitHub Repository](https://github.com/Aishahaha/ntu-project-1)
 
-Trav: Homepage / Attractions listing pages
+## Individual Contributions
+
+After the group project concluded, I continued to improve the project individually:
+
+- Removed hardcoded API keys and implemented environment variables to enhance configurability.
+
+## Screenshots
+
+### Home Page
+
+![Home Page](screenshots/home-page.png)
+
+### Attractions Listing Page
+
+Users can browse attractions by categories. By clicking on :white_heart:, users can add the attraction to their favourites.
+
+![Attractions Listing Page](screenshots/attractions-listing-page.png)
+
+### Attraction Detail Page
+
+Users can view information for the attraction and add the attraction to their favourites by clicking on :white_heart:.
+
+![Attraction Detail Page](screenshots/attraction-detail-page.png)
+
+### Profile Page
+
+Users can click on 'Log in' to view the profile page and their favourites.
+
+![Profile Page](screenshots/profile-page.png)
+
+## Live Site
+
+Visit the live site here: [SingaStays](https://singastays-lx.netlify.app/)
