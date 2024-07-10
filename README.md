@@ -45,6 +45,7 @@ This project was originally developed by a team of contributors. The key feature
 After the group project concluded, I continued to improve the project individually:
 
 - Removed hardcoded API keys and implemented environment variables to enhance configurability.
+- Added rewrite rules for Netlify to support client-side routing. Fixes 'Page Not Found' issue when user directly accesses or reloads pages that are not the home page.
 
 ## Screenshots
 
